@@ -34,7 +34,7 @@ const NavMain = () => {
           </NavDropdown>
           <Nav.Link href="#link">Sign In</Nav.Link>
           <Nav.Link href="#link">Sign Up</Nav.Link>
-          <i class="fas fa-shopping-cart"></i>
+          <i className="fas fa-shopping-cart"></i>
         </div>
       </div>
     </Navbar>
