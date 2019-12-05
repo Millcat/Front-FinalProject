@@ -14,7 +14,7 @@ import ShopCart from "./views/ShopCart";
 // import component (view partials)
 import NavMain from "./components/NavMain";
 import Footer from "./components/Footer";
-
+//test
 
 function App() {
   return (
