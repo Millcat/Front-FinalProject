@@ -1,11 +1,11 @@
 import React from 'react'
 
-function Home() {
+function ShopCart() {
     return (
         <div>
-            <h1>Home Page</h1>
+            Shopping Cart
         </div>
     )
 }
 
-export default Home
+export default ShopCart
