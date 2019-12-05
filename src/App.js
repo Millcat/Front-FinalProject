@@ -11,9 +11,10 @@ import SignIn from "./views/SignIn";
 import SignUp from "./views/SignUp";
 import AllTours from "./views/AllTours";
 import ShopCart from "./views/ShopCart";
-// import component (view partials)
 import NavMain from "./components/NavMain";
 import Footer from "./components/Footer";
+import CreateTour from "./views/CreateTour"
+import ManageTour from "./views/ManageTour"
 
 function App() {
   return (
@@ -25,8 +26,8 @@ function App() {
         <Route path="/sign-up" component={SignUp} />
         <Route path="/all-tours" component={AllTours} />
         <Route path="/shop-cart" component={ShopCart} />
-        {/* <Route path="/create-tour" component={CreateTour} /> */}
-        {/* <Route path="/manage-tour" component={ManageTour} /> */}
+        <Route path="/create-tour" component={CreateTour} />
+        <Route path="/manage-tour" component={ManageTour} />
       </Switch>
       <Footer />
     </div>
