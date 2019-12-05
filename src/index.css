@@ -1,13 +1,55 @@
-body {
+
+
+* {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+#logo-paris {
+  height: 60px;
+  padding-right: 10px;
+}
+
+.dropdown {
+  color: black;
+}
+
+.container-nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+}
+
+.container-nav-right {
+  display: flex;
+  flex-direction: row;
+}
+
+.container-nav-left {
+  display: flex;
+  flex-direction: row;
+}
+
+.fa-shopping-cart {
+  position: relative;
+  top: 13px
+}
+
+
+.footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.container-footer {
+  display: flex;
+  flex-direction: column;
+  padding: 0 15px;
+}
+
+.container-footer > p {
+  margin: 0 !important;
 }
