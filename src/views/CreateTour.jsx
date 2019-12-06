@@ -57,7 +57,11 @@ const CreateTour = props => {
                 </Form.Group>
                 <Form.Group controlId="exampleForm.ControlInput3">
                     <Form.Label>Price/person</Form.Label>
-                    <Form.Control onChange={handleChange} type="number" name="price" placeholder="20€" />
+                    <Form.Control onChange={handleChange} type="number" name="price" placeholder="20" />
+                </Form.Group>
+                <Form.Group controlId="exampleForm.ControlInput3">
+                    <Form.Label>Duration</Form.Label>
+                    <Form.Control onChange={handleChange} type="number" name="duration" placeholder="2" />
                 </Form.Group>
                 <Form.Group controlId="exampleForm.ControlInput4">
                     <Form.Label>Meeting point</Form.Label>
