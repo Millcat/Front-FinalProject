@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
 import Form from 'react-bootstrap/Form'
-import createTour from "../css/createTour.css"
+import "../css/createTour.css"
+// import googleAPI from '../api/googleAPI';
 
 
 const CreateTour = props => {
@@ -28,9 +29,23 @@ const CreateTour = props => {
     function handleChange(e) {
         const key = e.target.name;
         const value = e.target.value;
+        console.log(e.target.value)
         if (e.target.type === "file") {
             setFormTour({ ...formTour, [key]: e.target.files[0] });
-        } else {
+        }
+        // else if (e.target.name === "languages") {
+        //     const copy = { ...formTour }; // copy the full state
+        //     copy.languages = copy.languages && [...copy.languages] || []; // set an empty array if no previous lang selected
+        //     if (copy.languages.includes(value)) {
+        //         const index = copy.languages.indexOf(value);
+        //         copy.languages.splice(index, 1);
+        //     }
+        //     else {
+        //         copy.languages.push(value);// push new lang
+        //     }
+        //     setFormTour({ ...copy }); // set state /// ><*
+        // }
+        else {
             setFormTour({ ...formTour, [key]: value });
         }
     }
@@ -83,14 +98,13 @@ const CreateTour = props => {
                     <div className="form-group">
                         <label htmlFor="exampleFormControlSelect2">Choose language(s)</label>
                         <select multiple className="form-control" id="exampleFormControlSelect2" name="languages">
-                            <option>French</option>
-                            <option>English</option>
-                            <option>Japanese</option>
-                            <option>Chinese</option>
-                            <option>German</option>
-                            <option>Spanish</option>
-                            <option>Chinese</option>
-                            <option>Russian</option>
+                            <option value="French">French</option>
+                            <option value="English">English</option>
+                            <option value="Japanese">Japanese</option>
+                            <option value="German">German</option>
+                            <option value="Spanish">Spanish</option>
+                            <option value="Chinese">Chinese</option>
+                            <option value="Russian">Russian</option>
                         </select>
                     </div>
                 </Form.Group>
