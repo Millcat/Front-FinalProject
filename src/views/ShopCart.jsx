@@ -3,7 +3,9 @@ import React from 'react'
 function ShopCart() {
     return (
         <div>
-            Shopping Cart
+            <h1>Shopping Cart</h1>
+
+
         </div>
     )
 }

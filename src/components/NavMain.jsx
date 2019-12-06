@@ -14,10 +14,10 @@ const NavMain = () => {
           </Navbar.Brand>
           <Navbar id="basic-navbar-nav">
             <Nav className="mr-auto">
-              <NavLink to="/home" className="nav-link">
+              <NavLink exact to="/" className="nav-link">
                 Home
               </NavLink>
-              <NavLink to="/tours" className="nav-link">All experiences
+              <NavLink to="/all-tours" className="nav-link">All experiences
               </NavLink>
             </Nav>
           </Navbar>

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import axios from "axios";
-import tourCardPlus from "../css/tourCardPlus.css"
+import "../css/tourCardPlus.css"
 
 
 function TourCardPlus(props) {
@@ -18,7 +18,7 @@ function TourCardPlus(props) {
             });
     }, []);
 
-
+    console.log(tours)
 
     return (
         <div>
@@ -28,18 +28,15 @@ function TourCardPlus(props) {
                     <img src={tour.tourPicture} alt="card-plus" />
                     <div className="infos-tour">
                         <h3>{tour.name}</h3>
-                        <p className="thematics">{tour.thematics.map(thematic =>
-                            <><span>{thematic}</span>, </>)}</p>
+                        <p className="thematics">{tour.thematics}</p>
                         <p>{tour.maxPeople} people</p>
-                        <p>{tour.languages.map(language =>
-                            <><span>{language}</span>, </>)}</p>
+                        <p>{tour.languages.map((language, i) => (
+                            <span key={i}>{language}, </span>
+                        ))}</p>
                         <p><span>{tour.price}</span> €</p>
                         <button>About this tour</button>
                         {/* mettre un Link sur le bouton */}
-                        {/* <p>Proposé par {tour.user.name}</p> */}
                     </div>
-
-                    <hr />
                 </div>
             ))}
         </div>
