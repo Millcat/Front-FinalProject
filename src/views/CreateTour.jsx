@@ -70,11 +70,11 @@ const CreateTour = props => {
                         <option>Food</option>
                         <option>Street Art</option>
                         <option>Fashion</option>
-                        <option>Art</option>
-                        <option>Monument</option>
                         <option>Cinema</option>
-                        <option>Relax</option>
                         <option>Insolite</option>
+                        <option>Monument</option>
+                        <option>Art</option>
+                        <option>Sports</option>
                     </Form.Control>
                     <div className="form-group">
                         <label htmlFor="exampleFormControlSelect2">Choose language(s)</label>
