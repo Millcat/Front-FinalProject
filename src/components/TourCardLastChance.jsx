@@ -20,15 +20,13 @@ function TourCardLastChance() {
         <div>
             <h2>Last Chance Tours !</h2>
             {tours.map((tour, i) => (
-                <div className="tour-card-plus" key={i}>
+                <div className="tour-card-last-chance" key={i}>
                     <img src={tour.tourPicture} alt="card-plus" />
                     <div className="infos-bottom">
                         <h3>{tour.name}</h3>
                         {/* <Counter /> */}
                         <button>See Tour</button>
                     </div>
-                    {/* supprimer ce hr après */}
-                    <hr />
                 </div>
             ))}
         </div>
