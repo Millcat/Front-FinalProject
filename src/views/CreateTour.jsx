@@ -61,7 +61,7 @@ const CreateTour = props => {
                 </Form.Group>
                 <Form.Group controlId="exampleForm.ControlInput4">
                     <Form.Label>Meeting point</Form.Label>
-                    <Form.Control onChange={handleChange} type="text" placeholder="41 quai de la seine" name="name" />
+                    <Form.Control onChange={handleChange} type="text" placeholder="41 quai de la seine" name="meetingLocation" />
                 </Form.Group>
                 <Form.Group controlId="exampleForm.ControlSelect1">
                     <Form.Label>Thematic</Form.Label>
@@ -76,9 +76,9 @@ const CreateTour = props => {
                         <option>Relax</option>
                         <option>Insolite</option>
                     </Form.Control>
-                    <div class="form-group">
-                        <label for="exampleFormControlSelect2">Choose language(s)</label>
-                        <select multiple class="form-control" id="exampleFormControlSelect2">
+                    <div className="form-group">
+                        <label htmlFor="exampleFormControlSelect2">Choose language(s)</label>
+                        <select multiple className="form-control" id="exampleFormControlSelect2" name="languages">
                             <option>French</option>
                             <option>English</option>
                             <option>Japanese</option>
