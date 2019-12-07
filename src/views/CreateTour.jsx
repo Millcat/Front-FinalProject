@@ -30,24 +30,27 @@ const CreateTour = props => {
     const value = e.target.value;
     if (e.target.type === "file") {
       setFormTour({ ...formTour, [key]: e.target.files[0] });
-    } else {
-      setFormTour({ ...formTour, [e.target.name]: value });
+    }
+    else if (key === "languages") {
+      const options = Array.from(e.target.options);
+      const valueOptions = options.filter(o => o.selected).map(o => o.value);
+      setFormTour({ ...formTour, [key]: valueOptions });
+    }
+    else {
+      setFormTour({ ...formTour, [key]: value });
     }
   }
 
   return (
-    <div
-      className="container-form"
-      onSubmit={handleSubmit}
-      onChange={handleChange}
-    >
+    <div className="container-form" onSubmit={handleSubmit} onChange={handleChange}>
       <h1>Create your experience</h1>
       <Form className="form">
         <Form.Group controlId="exampleForm.ControlInput1">
-          <Form.Label>Name</Form.Label>
+          <Form.Label>Name *</Form.Label>
           <Form.Control
             onChange={handleChange}
             type="text"
+            value={formTour.name}
             placeholder="John Doe"
             name="name"
             required
@@ -55,20 +58,11 @@ const CreateTour = props => {
         </Form.Group>
         <Form.Group controlId="exampleForm.ControlFile1">
           <Form.Label>Tour Picture</Form.Label>
-          <Form.Control
-            onChange={handleChange}
-            type="file"
-            name="tourPicture"
-          />
+          <Form.Control onChange={handleChange} type="file" name="tourPicture" />
         </Form.Group>
         <Form.Group controlId="exampleForm.ControlInput2">
           <Form.Label>Max number of people</Form.Label>
-          <Form.Control
-            onChange={handleChange}
-            type="number"
-            name="maxPeople"
-            placeholder="6"
-          />
+          <Form.Control onChange={handleChange} type="number" name="maxPeople" placeholder="6" />
         </Form.Group>
         <Form.Group controlId="exampleForm.ControlInput3">
           <Form.Label>Dates</Form.Label>
@@ -76,31 +70,16 @@ const CreateTour = props => {
         </Form.Group>
         <Form.Group controlId="exampleForm.ControlInput3">
           <Form.Label>Price/person</Form.Label>
-          <Form.Control
-            onChange={handleChange}
-            type="number"
-            name="price"
-            placeholder="20"
-          />
+          <Form.Control onChange={handleChange} type="number" name="price" placeholder="20" />
         </Form.Group>
         <Form.Group controlId="exampleForm.ControlInput3">
           <Form.Label>Duration</Form.Label>
-          <Form.Control
-            onChange={handleChange}
-            type="number"
-            name="duration"
-            placeholder="2"
-          />
+          <Form.Control onChange={handleChange} type="number" name="duration" placeholder="2" />
         </Form.Group>
         <Autocomplete />
         <Form.Group controlId="exampleForm.ControlSelect1">
-          <Form.Label>Thematic</Form.Label>
-          <Form.Control
-            onChange={handleChange}
-            as="select"
-            name="thematics"
-            required
-          >
+          <Form.Label>Thematic *</Form.Label>
+          <Form.Control onChange={handleChange} value={formTour.thematics} as="select" name="thematics" required>
             <option value="">Choose a thematic</option>
             <option>Food</option>
             <option>Street Art</option>
@@ -112,15 +91,8 @@ const CreateTour = props => {
             <option>Sports</option>
           </Form.Control>
           <div className="form-group">
-            <label htmlFor="exampleFormControlSelect2">
-              Choose language(s)
-            </label>
-            <select
-              multiple
-              className="form-control"
-              id="exampleFormControlSelect2"
-              name="languages"
-            >
+            <label htmlFor="exampleFormControlSelect2">Choose language(s)</label>
+            <select multiple className="form-control" id="exampleFormControlSelect2" name="languages">
               <option value="French">French</option>
               <option value="English">English</option>
               <option value="Japanese">Japanese</option>
@@ -132,18 +104,19 @@ const CreateTour = props => {
           </div>
         </Form.Group>
         <Form.Group controlId="exampleForm.ControlTextarea1">
-          <Form.Label>Description</Form.Label>
+          <Form.Label>Description *</Form.Label>
           <Form.Control
             onChange={handleChange}
             as="textarea"
             rows="5"
             name="description"
+            value={formTour.description}
             placeholder="Discover Paris off the beaten track"
             required
           />
         </Form.Group>
-        <div className="container-btn-links">
-          <button className="btn">Submit</button>
+        <div className="container-links">
+          <button>Submit</button>
           {message && <p>The experience has been created succesfully !</p>}
           {/* <NavLink to={"/tours/:id"}>See my experience</NavLink> */}
           <NavLink className="links" to={"/manage-tour/"}>

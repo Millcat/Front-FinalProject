@@ -3,27 +3,15 @@ import axios from "axios";
 import "../css/tourCardPlus.css"
 
 
+// function TourCardPlus({ tours }) {
 function TourCardPlus(props) {
-    const [tours, setTours] = useState([]);
-    console.log(props);
 
-    useEffect(() => {
-        axios
-            .get(process.env.REACT_APP_BACKEND_URL + "/tours") // remplacer ensuite par "url" car définit dans le handler
-            .then(res => {
-                setTours(res.data);
-            })
-            .catch(err => {
-                console.log(err);
-            });
-    }, []);
 
-    console.log(tours)
+    console.log(props.tours)
 
     return (
         <div>
-
-            {tours.map((tour, i) => (
+            {props.tours.map((tour, i) => (
                 <div className="tour-card-plus" key={i}>
                     <img src={tour.tourPicture} alt="card-plus" />
                     <div className="infos-tour">

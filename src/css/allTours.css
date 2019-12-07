@@ -6,3 +6,21 @@
 .filters {
     text-align: center;
 }
+
+.filters-thematics {
+    display: flex;
+    justify-content: center;
+}
+
+.thematic {
+    padding: 10px 10px;
+}
+
+.thematic:hover {
+    background: rgb(165, 191, 238);
+    /* transition:  */
+}
+
+.thematic.isSelected {
+    background: rgb(103, 115, 138);
+}
