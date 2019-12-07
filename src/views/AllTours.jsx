@@ -2,7 +2,7 @@ import React from 'react'
 import TourCardPlus from "../components/TourCardPlus"
 import Filters from "../components/Filters"
 
-import allTours from "../css/allTours.css"
+import "../css/allTours.css"
 
 
 
