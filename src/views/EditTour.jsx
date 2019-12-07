@@ -1,25 +1,45 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import Form from 'react-bootstrap/Form'
+import { NavLink } from "react-router-dom"
+
 
 const EditTour = props => {
-  const [selectedTour, setSelectedTour] = useState(null);
-  console.log(props);
+  const [selectedTour, setSelectedTour] = useState(null);// mon state initial correspond à un formulaire déjà rempli ?
+  const [message, setMessage] = useState(false)
 
-
-  const handleSubmit = e => {
-    e.preventDefault();
-    const formData = new FormData();
-    for (let key in formTour) {
-      formData.append(key, formTour[key])
-    }
+  // To render view after the update
+  useEffect(() => {
+    const tourId = props.match.params.id;
     axios
-      .post(process.env.REACT_APP_BACKEND_URL + "/tours/", formData)
+      .get(process.env.REACT_APP_BACKEND_URL + "/tours/" + tourId)
       .then(res => {
-        props.history.push("/all-tours");
+        setSelectedTour(res.data);
       })
       .catch(err => {
         console.log(err);
       });
+  }, []);
+
+
+  // To Get the value
+  const handleChange = e => {
+    setSelectedTour({ ...selectedTour, [e.target.name]: e.target.value });
   };
+
+
+  // To Submit updated form and to post (patch) to databse
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    axios
+      .patch(
+        process.env.REACT_APP_BACKEND_URL + "/tours/" + selectedTour._id,
+        selectedTour
+      )
+      .then(res => setMessage(!message))
+      .catch(err => console.log(err))
+  };
+
 
   return (
     selectedTour !== null && (
@@ -38,7 +58,7 @@ const EditTour = props => {
           <Form.Label>Tour Picture</Form.Label>
           <Form.Control
             onChange={handleChange}
-            value={selectedTour.tourPicture}
+            // value={selectedTour.tourPicture}
             type="file"
             name="tourPicture"
           />
@@ -115,7 +135,7 @@ const EditTour = props => {
               multiple
               className="form-control"
               onChange={handleChange}
-              value={selectedTour.languages}
+              // value={selectedTour.languages}
               id="exampleFormControlSelect2"
               name="languages"
             >
@@ -142,11 +162,16 @@ const EditTour = props => {
             required
           />
         </Form.Group>
-        <button>
-          Update
-                  </button>
+        <div className="container-links">
+          <button>
+            Update</button>
+          {message && <p>The experience has been updated succesfully !</p>}
+          <NavLink to={"/manage-tour/"}>All my experiences</NavLink>
+          <NavLink to={"/all-tours/"}>See all tours</NavLink>
+        </div>
       </Form>
     )
   );
 };
-export default EditedTour;
+
+export default EditTour;

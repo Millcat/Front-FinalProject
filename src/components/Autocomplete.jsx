@@ -1,38 +1,52 @@
+//restrict search to only addresses in Paris
+
 import React from "react";
-import SearchBar from "material-ui-search-bar";
-import Script from "react-load-script";
+import Form from "react-bootstrap/Form";
+import PlacesAutocomplete, {
+  geocodeByAddress,
+} from "react-places-autocomplete";
 
-class Autocomplete extends Component {
-  constructor(props) {
-    super(props);
+export default function App() {
+  const [address, setAddress] = React.useState("");
 
-    this.state = {
-      city: "",
-      query: ""
-    };
-  }
+  const handleSelect = async value => {
+    const results = await geocodeByAddress(value);
+    setAddress(value);
+  };
 
-  render() {
-    return (
-      <div>
-        <SearchBar
-          id="autocomplete"
-          placeholder=""
-          hintText="Search City"
-          value={this.state.query}
-          style={{
-            margin: "0 auto",
-            maxWidth: 800
-          }}
-        />
-        <Script
-          url="https://maps.googleapis.com/maps/api/js?                               key=your_api_key&libraries=places"
-          onLoad={this.handleScriptLoad}
-        />
-        <SearchBar />
-      </div>
-    );
-  }
+  return (
+    <div>
+      <PlacesAutocomplete
+        value={address}
+        onChange={setAddress}
+        onSelect={handleSelect}
+      >
+        {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
+          <div>
+            <Form.Group controlId="exampleForm.ControlInput4">
+              <Form.Label>Meeting point</Form.Label>
+              <Form.Control {...getInputProps({ placeholder: "Type address" })} name="meetingLocation" >
+              </Form.Control>
+            </Form.Group>
+            <div>
+              {loading ? <div>...loading</div> : null}
+
+              {suggestions.map(suggestion => {
+                console.log(suggestion)
+                const style = {
+                  backgroundColor: suggestion.active ? "#41b6e6" : "#fff"
+                };
+
+                return (
+                  <div {...getSuggestionItemProps(suggestion, { style })}>
+                    {suggestion.description}
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        )}
+      </PlacesAutocomplete>
+    </div>
+  );
 }
-
-export default Autocomplete;

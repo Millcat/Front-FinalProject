@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "../css/manageTour.css";
+import { NavLink } from "react-router-dom"
 
 const ManageTour = props => {
   const [tours, setTours] = useState([]);
-  const [selectedTour, setSelectedTour] = useState(null);
+  // const [selectedTour, setSelectedTour] = useState(null);
 
   useEffect(() => {
     axios
@@ -29,25 +30,16 @@ const ManageTour = props => {
       });
   };
 
-  const handleSelectedTour = tour => {
-    setSelectedTour({ ...tour });
-  };
+  // const handleSelectedTour = tour => {
+  //   setSelectedTour({ ...tour });
+  // };
 
-  const handleSubmit = e => {
-    e.preventDefault();
-    console.log(selectedTour);
-    axios
-      .patch(
-        process.env.REACT_APP_BACKEND_URL + "/tours/" + selectedTour._id,
-        selectedTour
-      )
-      .then(res => console.log(res))
-      .catch(err => console.log(err));
-  };
+  // const handleSelectedTour = tour => {
+  //   // setSelectedTour({ ...tour });
+  //   axios.get(process.env.REACT_APP_BACKEND_URL + "/tours/" + selectedTour._id, selectedTour)
+  //     .then(res => props.history.push("/edit-tour/" + selectedTour._id))
+  // };
 
-  const handleChange = e => {
-    setSelectedTour({ ...selectedTour, [e.target.name]: e.target.value });
-  };
 
   return (
     <div>
@@ -64,31 +56,30 @@ const ManageTour = props => {
           </tr>
         </thead>
         <tbody>
-          !tours.length ? (
-    <tr>
-            <td>No experiences to display</td>
-          </tr>
-          ) : (
-              {tours.map((tour, i) => (
-            <tr key={i}>
-              <td>{tour.name}</td>
-              <td>
-                <img src={tour.tourPicture} alt={tour.name} className="tourPicture" />
-              </td>
-              <td> {tour.thematics}</td>
-              <td>{tour.price}</td>
-              <td>
-                <button onClick={e => handleDelete(tour._id)}>X</button>
-              </td>
-              <td>
-                <button onClick={e => handleSelectedTour(tour)}>Edit</button>
-              </td>
+          {!tours.length ? (
+            <tr>
+              <td>No experiences to display</td>
             </tr>
-          ))
-          }
+          ) : (
+              tours.map((tour, i) => (
+                <tr key={i}>
+                  <td>{tour.name}</td>
+                  <td>
+                    <img src={tour.tourPicture} alt={tour.name} className="tourPicture" />
+                  </td>
+                  <td> {tour.thematics}</td>
+                  <td>{tour.price}</td>
+                  <td>
+                    <NavLink to={"/edit-tour/" + tour._id}>Edit</NavLink>
+                  </td>
+                  <td>
+                    <button onClick={e => handleDelete(tour._id)}>X</button>
+                  </td>
+                </tr>
+              )))}
         </tbody>
       </table>
     </div>
   );
-};
+}
 export default ManageTour;
