@@ -2,6 +2,9 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "../css/manageTour.css";
 import { NavLink } from "react-router-dom"
+import Button from 'react-bootstrap/Button'
+import Counter from "../components/Counter"
+
 
 const ManageTour = props => {
   const [tours, setTours] = useState([]);
@@ -12,6 +15,7 @@ const ManageTour = props => {
       .get(process.env.REACT_APP_BACKEND_URL + "/tours")
       .then(res => {
         setTours(res.data);
+        console.log(res)
       })
       .catch(err => {
         console.log(err);
@@ -70,15 +74,16 @@ const ManageTour = props => {
                   <td> {tour.thematics}</td>
                   <td>{tour.price}</td>
                   <td>
-                    <NavLink to={"/edit-tour/" + tour._id}>Edit</NavLink>
+                    <NavLink to={"/edit-tour/" + tour._id}><Button className="btn">Edit</Button></NavLink>
                   </td>
                   <td>
-                    <button onClick={e => handleDelete(tour._id)}>X</button>
+                    <Button className="btn-delete" onClick={e => handleDelete(tour._id)}>Delete</Button>
                   </td>
                 </tr>
               )))}
         </tbody>
       </table>
+      <Counter />
     </div>
   );
 }

@@ -3,6 +3,8 @@
   padding: 0;
 }
 
+/* NavBar */
+
 #logo-paris {
   height: 60px;
   padding-right: 10px;
@@ -41,10 +43,26 @@
   flex-direction: row;
 }
 
+/*Button*/
+.btn {
+  background: #3399FF !important;
+  color: white !important;
+  border: none !important;
+  width: 80px;
+  margin-bottom: 10px;
+}
+
+.btn-delete {
+background: #E53A40 ! important;
+}
+
+/* Footer */
+
 .footer {
   display: flex;
   flex-direction: row;
   justify-content: center;
+  margin-top: 30px;
 }
 
 .container-footer {

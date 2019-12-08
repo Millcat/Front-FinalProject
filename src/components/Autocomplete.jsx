@@ -10,7 +10,7 @@ export default function App() {
   const [address, setAddress] = React.useState("");
 
   const handleSelect = async value => {
-    const results = await geocodeByAddress(value);
+    /*const results =*/ await geocodeByAddress(value);
     setAddress(value);
   };
 
