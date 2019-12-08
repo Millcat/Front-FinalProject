@@ -11,6 +11,7 @@ const Filters = (props) => {
         { name: 'Monument', isSelected: false },
         { name: 'Art', isSelected: false },
         { name: 'Sports', isSelected: false }
+        //add aussi languages
     ]);
 
     // console.log(filters);

@@ -7,17 +7,10 @@ import "../css/allTours.css"
 
 
 function AllTours(props) {
-    const [tours, setTours] = useState([]);
+    const [tours, setTours] = useState([]); // tours is used line 54
 
     useEffect(() => {
-        axios
-            .get(process.env.REACT_APP_BACKEND_URL + "/tours") // remplacer ensuite par "url" car définit dans le handler
-            .then(res => {
-                setTours(res.data);
-            })
-            .catch(err => {
-                console.log(err);
-            });
+        getFilteredTours([]);
     }, []);
 
     const getFilteredTours = (filters) => {
@@ -33,7 +26,7 @@ function AllTours(props) {
         console.log(thematicsNames(filters))
 
         axios
-            .post(process.env.REACT_APP_BACKEND_URL + "/filter", thematicsNames(filters))
+            .post(process.env.REACT_APP_BACKEND_URL + "/toursFiltered", thematicsNames(filters))
             .then(res => {
                 setTours(res.data); // answer from server : all my tours
                 // need to render a view ==> useEffect
