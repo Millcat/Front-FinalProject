@@ -7,20 +7,20 @@
     text-align: center;
 }
 
-.filters-thematics {
+.filters-list{
     display: flex;
     justify-content: center;
 }
 
-.thematic {
+.filter {
     padding: 10px 10px;
 }
 
-.thematic:hover {
+.filter:hover {
     background: rgb(165, 191, 238);
     /* transition:  */
 }
 
-.thematic.isSelected {
+.filter.isSelected {
     background: rgb(103, 115, 138);
 }

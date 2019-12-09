@@ -7,26 +7,27 @@ import "../css/allTours.css"
 
 
 function AllTours(props) {
-    const [tours, setTours] = useState([]); // tours is used line 54
+    const [tours, setTours] = useState([]); // tours is used in the component TourCardPlus at the very end of this file
 
     useEffect(() => {
-        getFilteredTours([]);
+        getFilteredTours([], []);
     }, []);
 
-    const getFilteredTours = (filters) => {
+    const getFilteredTours = (thematics, languages) => {
         console.log("you are in getFilteredTours!")
 
         //get just the names of the thematics selected
-        const thematicsNames = (filters) => {
+        const getFilterNames = (filters) => {
             return filters
                 .filter(filter => filter.isSelected)
                 .map((filter) => filter.name);
         }
 
-        console.log(thematicsNames(filters))
+        const thematicsNames = getFilterNames(thematics);
+        const languagesNames = getFilterNames(languages);
 
         axios
-            .post(process.env.REACT_APP_BACKEND_URL + "/toursFiltered", thematicsNames(filters))
+            .post(process.env.REACT_APP_BACKEND_URL + "/toursFiltered", { thematicsNames, languagesNames })
             .then(res => {
                 setTours(res.data); // answer from server : all my tours
                 // need to render a view ==> useEffect
@@ -41,7 +42,7 @@ function AllTours(props) {
     return (
         <div className="all-tours">
             <h1>Find your experience...</h1>
-            <Filters onChange={(filters) => getFilteredTours(filters)} />
+            <Filters onChange={(thematics, languages) => getFilteredTours(thematics, languages)} />
             {/* <Filters onChange={getFilteredTours} /> same syntax*/}
             {/* 2) get the array of filters from child Filters and send it as parameter in the getFilteredTours function */}
             <TourCardPlus tours={tours} />
