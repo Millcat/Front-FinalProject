@@ -6,6 +6,8 @@ import PlacesAutocomplete, {
   geocodeByAddress
 } from "react-places-autocomplete";
 
+const google = window.google;
+
 export default function App() {
   const [address, setAddress] = React.useState("");
 
@@ -14,12 +16,19 @@ export default function App() {
     setAddress(value);
   };
 
+  const searchOptions = {
+    location: new google.maps.LatLng(48.8534033, 2.3465949), // coordonates Notre-Dame, Paris
+    radius: 50000, // in meters => 50km
+    types: ["address"]
+  };
+
   return (
     <div>
       <PlacesAutocomplete
         value={address}
         onChange={setAddress}
         onSelect={handleSelect}
+        searchOptions={searchOptions}
       >
         {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
           <div>

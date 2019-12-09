@@ -16,11 +16,13 @@ function SignUp(props) {
     }
     axios
       .post(process.env.REACT_APP_BACKEND_URL + "/signup", formData)
-      .then(res => {
-        props.history.push("/home");
+      .then(user => {
+        console.log(user);
+        props.history.push("/");
       })
       .catch(err => {
-        console.log(err);
+        // Gestion d'erreur todo
+        console.log(err.response);
       });
   }
 
