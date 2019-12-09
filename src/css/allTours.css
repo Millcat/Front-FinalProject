@@ -6,3 +6,21 @@
 .filters {
     text-align: center;
 }
+
+.filters-list{
+    display: flex;
+    justify-content: center;
+}
+
+.filter {
+    padding: 10px 10px;
+}
+
+.filter:hover {
+    background: rgb(165, 191, 238);
+    /* transition:  */
+}
+
+.filter.isSelected {
+    background: rgb(103, 115, 138);
+}
