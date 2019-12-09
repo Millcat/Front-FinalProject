@@ -15,16 +15,16 @@ const NavMain = () => {
               <NavLink exact to="/" className="nav-link">
                 Home
               </NavLink>
-              <NavLink to="/all-tours" className="nav-link">All experiences
+              <NavLink to="/all-tours" className="nav-link">
+                All experiences
               </NavLink>
             </Nav>
           </Navbar>
         </div>
         <div className="container-nav-right">
-          <NavDropdown
-            title="My experiences"
-            id="basic-nav-dropdown"
-          >  <NavLink to="/create-tour" className="dropdown-item">
+          <NavDropdown title="My experiences" id="basic-nav-dropdown">
+            {" "}
+            <NavLink to="/create-tour" className="dropdown-item">
               Create an experience
             </NavLink>
             <NavLink to="/manage-tour" className="dropdown-item">

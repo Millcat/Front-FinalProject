@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "../css/manageTour.css";
-import { NavLink } from "react-router-dom"
-import Button from 'react-bootstrap/Button'
-import Counter from "../components/Counter"
-
+import { NavLink } from "react-router-dom";
+import Button from "react-bootstrap/Button";
+import Counter from "../components/Counter";
 
 const ManageTour = props => {
   const [tours, setTours] = useState([]);
@@ -12,10 +11,11 @@ const ManageTour = props => {
 
   useEffect(() => {
     axios
-      .get(process.env.REACT_APP_BACKEND_URL + "/tours")
+      .post(process.env.REACT_APP_BACKEND_URL + "/toursFiltered")
       .then(res => {
+        console.log(res.data);
         setTours(res.data);
-        console.log(res)
+        console.log(res);
       })
       .catch(err => {
         console.log(err);
@@ -44,7 +44,6 @@ const ManageTour = props => {
   //     .then(res => props.history.push("/edit-tour/" + selectedTour._id))
   // };
 
-
   return (
     <div className="container-table">
       <h1>Edit your experience</h1>
@@ -65,25 +64,37 @@ const ManageTour = props => {
               <td>No experiences to display</td>
             </tr>
           ) : (
-              tours.map((tour, i) => (
-                <tr key={i}>
-                  <td>{tour.name}</td>
-                  <td>
-                    <img src={tour.tourPicture} alt={tour.name} className="tourPicture" />
-                  </td>
-                  <td>{tour.maxPeople}</td>
-                  <td>{tour.price}</td>
-                  <td>
-                    <NavLink to={"/edit-tour/" + tour._id}><Button className="btn">Edit</Button></NavLink>
-                  </td>
-                  <td>
-                    <Button className="btn-delete" onClick={e => handleDelete(tour._id)}>Delete</Button>
-                  </td>
-                </tr>
-              )))}
+            tours.map((tour, i) => (
+              <tr key={i}>
+                <td>{tour.name}</td>
+                <td>
+                  <img
+                    src={tour.tourPicture}
+                    alt={tour.name}
+                    className="tourPicture"
+                  />
+                </td>
+                <td>{tour.maxPeople}</td>
+                <td>{tour.price}</td>
+                <td>
+                  <NavLink to={"/edit-tour/" + tour._id}>
+                    <Button className="btn">Edit</Button>
+                  </NavLink>
+                </td>
+                <td>
+                  <Button
+                    className="btn-delete"
+                    onClick={e => handleDelete(tour._id)}
+                  >
+                    Delete
+                  </Button>
+                </td>
+              </tr>
+            ))
+          )}
         </tbody>
       </table>
     </div>
   );
-}
+};
 export default ManageTour;

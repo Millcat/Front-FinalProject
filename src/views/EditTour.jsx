@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import Form from 'react-bootstrap/Form'
+import Form from "react-bootstrap/Form";
 import "../css/tourForm.css";
-import { NavLink } from "react-router-dom"
-
+import { NavLink } from "react-router-dom";
 
 const EditTour = props => {
-  const [selectedTour, setSelectedTour] = useState(null);// mon state initial correspond à un formulaire déjà rempli ?
-  const [message, setMessage] = useState(false)
+  const [selectedTour, setSelectedTour] = useState(null); // mon state initial correspond à un formulaire déjà rempli ?
+  const [message, setMessage] = useState(false);
 
   // To render view after the update
   useEffect(() => {
@@ -22,15 +21,13 @@ const EditTour = props => {
       });
   }, []);
 
-
   // To Get the value
   const handleChange = e => {
     setSelectedTour({ ...selectedTour, [e.target.name]: e.target.value });
   };
 
-
   // To Submit updated form and to post (patch) to databse
-  const handleSubmit = (e) => {
+  const handleSubmit = e => {
     e.preventDefault();
     axios
       .patch(
@@ -38,9 +35,8 @@ const EditTour = props => {
         selectedTour
       )
       .then(res => setMessage(!message))
-      .catch(err => console.log(err))
+      .catch(err => console.log(err));
   };
-
 
   return (
     selectedTour !== null && (
@@ -132,7 +128,7 @@ const EditTour = props => {
             <div className="form-group">
               <label htmlFor="exampleFormControlSelect2">
                 Choose language(s)
-            </label>
+              </label>
               <select
                 multiple
                 className="form-control"
@@ -165,12 +161,15 @@ const EditTour = props => {
             />
           </Form.Group>
           <div className="container-btn-links">
-            <button className="btn">
-              Update</button>
+            <button className="btn">Update</button>
             {message && <p>The experience has been updated succesfully !</p>}
             <div className="container-links">
-              <NavLink className="links" to={"/manage-tour/"}><i class="fas fa-chevron-right"></i>All my experiences</NavLink>
-              <NavLink className="links" to={"/tours/" + selectedTour._id}><i class="fas fa-chevron-right"></i>See experience</NavLink>
+              <NavLink className="links" to={"/manage-tour/"}>
+                <i class="fas fa-chevron-right"></i>All my experiences
+              </NavLink>
+              <NavLink className="links" to={"/tours/" + selectedTour._id}>
+                <i class="fas fa-chevron-right"></i>See experience
+              </NavLink>
             </div>
           </div>
         </Form>

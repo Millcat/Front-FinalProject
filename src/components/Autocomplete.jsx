@@ -3,7 +3,7 @@
 import React from "react";
 import Form from "react-bootstrap/Form";
 import PlacesAutocomplete, {
-  geocodeByAddress,
+  geocodeByAddress
 } from "react-places-autocomplete";
 
 export default function App() {
@@ -25,14 +25,16 @@ export default function App() {
           <div>
             <Form.Group controlId="exampleForm.ControlInput4">
               <Form.Label>Meeting point</Form.Label>
-              <Form.Control {...getInputProps({ placeholder: "Type address" })} name="meetingLocation" >
-              </Form.Control>
+              <Form.Control
+                {...getInputProps({ placeholder: "Type address" })}
+                name="meetingLocation"
+              ></Form.Control>
             </Form.Group>
             <div>
               {loading ? <div>...loading</div> : null}
 
               {suggestions.map(suggestion => {
-                console.log(suggestion)
+                console.log(suggestion);
                 const style = {
                   backgroundColor: suggestion.active ? "#41b6e6" : "#fff"
                 };
