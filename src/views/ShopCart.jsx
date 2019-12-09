@@ -1,11 +1,13 @@
-import React from "react";
+import React from 'react'
 
 function ShopCart() {
   return (
     <div>
       <h1>Shopping Cart</h1>
+
+
     </div>
-  );
+  )
 }
 
-export default ShopCart;
+export default ShopCart

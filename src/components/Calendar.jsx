@@ -1,33 +1,46 @@
 import React, { Component } from 'react'
 import 'react-dates/initialize';
-import { DateRangePicker, SingleDatePicker, DayPickerRangeController } from 'react-dates';
+import { DateRangePicker, SingleDatePicker } from 'react-dates';
 import 'react-dates/lib/css/_datepicker.css';
 export const pureComponentAvailable = true;
 
 export default class Calendar extends Component {
 
     state = {
-        startDate: null,
-        endDate: null,
+        date: null,
+        isDayBlocked: null
     };
 
-    getInputs = (e) => {
-        this.setState({ startDate: e.target.value });
-        console.log(e.target.value)
+    // isDayBlocked: PropTypes.func,
+    // isOutsideRange: PropTypes.func,
+    // isDayHighlighted: PropTypes.func,
+
+
+    // 1 / Get all the dates that are included in The start and end Date (start and end included) and post in the BDD
+    // 2 / Write a function to showDaysStatus (available || blocked)
+    // dates = [] => doit être sélectionnable dans le calendar
+    // LOGIQUE : // function showDaysStatus() if tour.dates => show highlited | if !tour.dates => block the dates
+
+    handleChange(date) {
+        this.setState({ date })
+        this.props.handleDateChange(date)
+    }
+    test() {
+        console.log("appelé")
     }
 
     render() {
         return (
             <div>
-                <DateRangePicker
-                    inputs={this.getInputs}
-                    startDate={this.state.startDate} // momentPropTypes.momentObj or null,
-                    startDateId="your_unique_start_date_id" // PropTypes.string.isRequired,
-                    endDate={this.state.endDate} // momentPropTypes.momentObj or null,
-                    endDateId="your_unique_end_date_id" // PropTypes.string.isRequired,
-                    onDatesChange={({ startDate, endDate }) => this.setState({ startDate, endDate })} // PropTypes.func.isRequired,
-                    focusedInput={this.state.focusedInput} // PropTypes.oneOf([START_DATE, END_DATE]) or null,
-                    onFocusChange={focusedInput => this.setState({ focusedInput })} // PropTypes.func.isRequired,
+                <SingleDatePicker
+                    isDayBlocked={this.test}
+                    // onChange={this.getDate}
+                    date={this.state.date} // momentPropTypes.momentObj or null
+                    onDateChange={date => this.handleChange(date)} // PropTypes.func.isRequired
+                    focused={this.state.focused} // PropTypes.bool
+                    onFocusChange={({ focused }) => this.setState({ focused })} // PropTypes.func.isRequired
+                    id="your_unique_id" // PropTypes.string.isRequired,
+                    isDayBlocked={this.state.blocked}
                 />
             </div>
         )

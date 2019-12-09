@@ -9,7 +9,7 @@ function Tour(props) {
     const [selectChoices, setSelectChoices] = useState(null); // To chose date and number of participants
     // const [cartStatus, setCardStatus] = useState(null);
 
-    // Récupérer les datas du Tour pour les afficher ==> OK
+    // Récupérer les datas du Tour pour les afficher ==> OK mais pas le tourId !
     useEffect(() => {
         const tourId = props.match.params.id;
         axios.get(process.env.REACT_APP_BACKEND_URL + "/tours/" + tourId)
@@ -25,13 +25,21 @@ function Tour(props) {
     // Récupérer les valeurs de l'input participants + input du calendar ===> KO car pas de calendar + n'arrive pas à afficher des valeurs sur le select nb of participants
     const handleChange = e => {
         setSelectChoices({ ...selectChoices, [e.target.name]: e.target.value }); // ajouter le calendar
+        console.log(e.target.value)
     };
+
+    const handleDateChange = (date) => {
+        console.log(date._d)
+        setSelectChoices({ ...selectChoices, date: date._d })
+    }
 
     // Ajouter le booking au panier
     const addToCart = e => {
         e.preventDefault();
+        const participants = selectChoices.participants
+        const date = selectChoices.date
         axios
-            .post(process.env.REACT_APP_BACKEND_URL + "/booking")
+            .post(process.env.REACT_APP_BACKEND_URL + "/booking", { tour, participants, date })
             .then(res => {
                 console.log(res)
             })
@@ -52,17 +60,11 @@ function Tour(props) {
             arr.push(i + 1)
         }
         return arr;
-
-        // return tour.bookings.map(booking => {
-        //     for (let i = 0; i < (maxPeople - booking.participants); i++) {
-        //         return i
-        //     }
-        // })
     }
 
     const imageUrl = tour.tourPicture
 
-    if (Object.keys(tour).length === 0) return <div>Nothing to show</div>
+    if (Object.keys(tour).length === 0) return <div>No Spots left</div>
     return (
         <div>
             <header className="header" style={{ backgroundImage: `url(${imageUrl})` }}>
@@ -99,10 +101,10 @@ function Tour(props) {
                 <section id="user-inputs">
                     <form>
                         <p>Check availibility:</p>
-                        <Calendar />
+                        <Calendar handleDateChange={handleDateChange} />
                         <label>Select participants:</label>
-                        <select name="maxPeople">
-                            {getRemainingSpots().map(spot => (<option>{spot}</option>))}
+                        <select name="participants" onChange={handleChange}>
+                            {getRemainingSpots().map((spot, i) => (<option key={i}>{spot}</option>))}
                         </select>
                     </form>
                 </section>
@@ -114,9 +116,3 @@ function Tour(props) {
 
 export default Tour
 
-/* ---- Calendar + Select number of people-----*/
-        // Récupérer les inputs du calendar et des participants (handleChange)
-        // Input Select Participants : faire la différence entre maxPeople(prop de tour) et de participants qui ont déjà validé leur booking (prop de booking)
-
-/* ---- bouton add to cart-----*/
-        // Poster les datas suivantes dans BDD : status : added to cart ; tour: tourId ; Participants & Chosen Date

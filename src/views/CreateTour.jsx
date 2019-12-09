@@ -4,27 +4,13 @@ import Form from "react-bootstrap/Form";
 import "../css/tourForm.css";
 import Autocomplete from "../components/Autocomplete";
 import { NavLink } from "react-router-dom";
+import CalendarForm from "../components/CalendarForm"
 
 const CreateTour = props => {
   const [formTour, setFormTour] = useState({});
   const [message, setMessage] = useState(false);
 
-  const handleSubmit = e => {
-    e.preventDefault();
-    const formData = new FormData();
-    for (let key in formTour) {
-      formData.append(key, formTour[key]);
-    }
-    axios
-      .post(process.env.REACT_APP_BACKEND_URL + "/tours", formData)
-      .then(res => {
-        setMessage(!message);
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  };
-
+  // Change of all the inputs except calendar
   function handleChange(e) {
     const key = e.target.name;
     const value = e.target.value;
@@ -38,6 +24,30 @@ const CreateTour = props => {
       setFormTour({ ...formTour, [key]: value });
     }
   }
+
+  // Change of calendar input range
+  const handleDatesChange = (startDate, endDate) => {
+    console.log(startDate._d, endDate)
+    setFormTour({ ...formTour, startDate: startDate._d, endDate: endDate ? endDate._d : null }) // -d n'est pad defined ???
+  }
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    const date = formTour.dates // Afficher dans la BDD une array de date (dates comprises dans le range)
+    const formData = new FormData();
+    for (let key in formTour) {
+      formData.append(key, formTour[key]);
+    }
+    axios
+      .post(process.env.REACT_APP_BACKEND_URL + "/tours", formData) // Envoyer les datas ici
+      .then(res => {
+        setMessage(!message);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+
 
   return (
     <div
@@ -76,8 +86,9 @@ const CreateTour = props => {
           />
         </Form.Group>
         <Form.Group controlId="exampleForm.ControlInput3">
-          <Form.Label>Dates</Form.Label>
-          <Form.Control onChange={handleChange} type="date" name="dates" />
+          <Form.Label>Select a range of dates:</Form.Label>
+          <CalendarForm name="dates" handleDatesChange={handleDatesChange} />
+          {/* <Form.Control onChange={handleChange} type="date" name="dates" /> */}
         </Form.Group>
         <Form.Group controlId="exampleForm.ControlInput3">
           <Form.Label>Price/person</Form.Label>
