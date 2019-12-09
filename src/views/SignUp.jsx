@@ -1,15 +1,46 @@
-import React from "react";
+// Submit doesn't work => Status 400
+
+import React, { useState } from "react";
+import axios from "axios";
 import Form from "react-bootstrap/Form";
 import Col from "react-bootstrap/Col";
-import Button from "react-bootstrap/Button";
 
-function SignUp() {
+function SignUp(props) {
+  const [formUser, setFormUser] = useState({});
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    const formData = new FormData();
+    for (let key in formUser) {
+      formData.append(key, formUser[key]);
+    }
+    axios
+      .post(process.env.REACT_APP_BACKEND_URL + "/signup", formData)
+      .then(res => {
+        props.history.push("/home");
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }
+
+  function handleChange(e) {
+    const key = e.target.name;
+    const value = e.target.value;
+    if (e.target.type === "file") {
+      setFormUser({ ...formUser, [key]: e.target.files[0] });
+    } else {
+      setFormUser({ ...formUser, [e.target.name]: value });
+      console.log(e.target.value);
+    }
+  }
+
   return (
     <div className="container-form">
-      <Form>
+      <Form onSubmit={handleSubmit} onChange={handleChange}>
         <Form.Group controlId="formGridAddress1">
           <Form.Label>Name :</Form.Label>
-          <Form.Control type="username" placeholder="John Doe" />
+          <Form.Control name="username" type="text" placeholder="John Doe" />
         </Form.Group>
         <Form.Row>
           <Form.Group as={Col} controlId="formGridState">
@@ -44,9 +75,7 @@ function SignUp() {
             placeholder="Discover Paris off the beaten track"
           />
         </Form.Group>
-        <Button variant="primary" type="submit">
-          Submit
-        </Button>
+        <button>Submit</button>
       </Form>
     </div>
   );

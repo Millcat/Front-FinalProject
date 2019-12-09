@@ -1,0 +1,99 @@
+@import url('https://fonts.googleapis.com/css?family=Qwigley&display=swap');
+
+body {
+    color: #212120;
+}
+
+header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+#tour-name {
+   padding: 20px;
+   font-family: "Qwigley", cursive;
+   color: #907fbb;
+   font-size: 5rem;
+}
+
+#bg-img {
+    width: 100%
+}
+
+.container-img {
+    height: 500px;
+}
+
+.main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background: white;
+}
+
+section {
+    width: 60%;
+    background-color: white;
+    margin-bottom: 30px;
+    padding: 20px;
+    border-radius: 8px;
+    border: 2px solid #e8ecec;
+    display: flex;
+    flex-direction: column;
+}
+
+#main-infos {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background: #F7F7F7;
+}
+
+h5 {
+    padding-bottom: 15px;
+}
+
+.containers-overview {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+
+}
+.container-overview {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 40%;
+}
+
+.container-overview > div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-bottom: 1px dashed #ddd;
+    padding-bottom: 5px;
+    padding-top: 8px;
+}
+
+.container-btn {
+    background: #F7F7F7; 
+}
+
+.btn-cart {
+ width: 8%;
+ margin-bottom: 20px;
+background: #907fbb !important;
+ color: white !important;
+ border: none !important;
+ border-radius: 4px;
+ padding: 10px;
+}
+
+

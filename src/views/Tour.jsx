@@ -1,13 +1,13 @@
-
 import React from 'react'
 import { useState, useEffect } from "react"
 import axios from "axios"
-
+import Calendar from "../components/Calendar"
+import "../css/tour.css"
 
 function Tour(props) {
     const [tour, setTour] = useState({});
     const [selectChoices, setSelectChoices] = useState(null); // To chose date and number of participants
-    const [cartStatus, setCardStatus] = useState(null);
+    // const [cartStatus, setCardStatus] = useState(null);
 
     // Récupérer les datas du Tour pour les afficher ==> OK
     useEffect(() => {
@@ -40,33 +40,64 @@ function Tour(props) {
             });
     };
 
-    // Récupérer le nbre de places restantes sous forme d'array de chiffres (1,2,3,4 etc)
+    // Afficher le nbre de places restantes en fonction de la date sélectionnée
     // function getRemainingSpots() {
-    //     var bookingMaxPeople = tour.bookings.map(booking => tour.booking.maxPeople)
-    //     for (let i = 0; i < (tour.maxPeople - bookingMaxPeople); i++) {
-    //         return i
-    //     }
+    //     const maxPeople = tour.maxPeople
+    //     tour.bookings.map(booking => {
+    //         for (let i = 0; i < (maxPeople - booking.participants); i++) {
+    //             return i
+    //         }
+    //     })
     // }
+
+    const imageUrl = tour.tourPicture
+
 
     return (
         <div>
-            <img src={tour.tourPicture} id="img-tour"></img>
-            <h1 id="tour-name">{tour.name}</h1>
-            <p>Maximum Number of People: {tour.maxPeople}</p>
-            <p>Language(s): {tour.languages}</p>
-            <p>Price per person: {tour.price} €</p>
-            <p>Tour location: {tour.duration} hours</p>
-            <p>Tour meeting location: {tour.meetingLocation}</p>
-            <p>Tour description: {tour.description}</p>
-
-            <form>
-                <p>Check availibility: {tour.dates}</p>
-                <label>Select participants:</label>
-                <select name="maxPeople">
-                    {/* <option onChange={handleChange}>{countParticipants}</option> */}
-                </select>
-                <button onClick={addToCart}>Add to cart</button>
-            </form>
+            <header className="header" style={{ backgroundImage: `url(${imageUrl})` }}>
+                <h1 id="tour-name">{tour.name}</h1>
+            </header>
+            <main className="main">
+                <section id="main-infos">
+                    <h5>TOUR OVERVIEW</h5>
+                    <div className="containers-overview">
+                        <div className="container-overview">
+                            <div><p>Price per person:</p><p>{tour.price}€</p></div>
+                            <div><p>Maximum Number of People: </p><p>{tour.maxPeople}€</p></div>
+                        </div>
+                        <div className="container-overview">
+                            <div><p>Language(s):</p><p>{tour.languages}</p></div>
+                            <div><p>Tour duration:</p><p>{tour.duration} hours</p></div>
+                        </div>
+                    </div>
+                </section>
+                <section id="guide-card">
+                    <h5>YOUR GUIDE</h5>
+                    {/* <p>{tour.user.username}</p>
+                    <p>{tour.user.age}</p>
+                    <p>{tour.user.description}</p> */}
+                </section>
+                <section id="meeting-location">
+                    <h5>MEETING LOCATION</h5>
+                    <p>Tour meeting location: {tour.meetingLocation}</p>
+                </section>
+                <section id="description">
+                    <h5>TOUR OVERVIEW</h5>
+                    <p>Tour description: {tour.description}</p>
+                </section>
+                <section id="user-inputs">
+                    <form>
+                        <p>Check availibility:</p>
+                        <Calendar />
+                        <label>Select participants:</label>
+                        <select name="maxPeople">
+                            <option onChange={handleChange}></option>
+                        </select>
+                    </form>
+                </section>
+                <button className="btn-cart" onClick={addToCart}>Add to cart</button>
+            </main>
         </div>
     )
 }
@@ -74,8 +105,8 @@ function Tour(props) {
 export default Tour
 
 /* ---- Calendar + Select number of people-----*/
-// Récupérer les inputs du calendar et des participants (handleChange)
-// Input Select Participants : faire la différence entre maxPeople(prop de tour) et de participants qui ont déjà validé leur booking (prop de booking)
+        // Récupérer les inputs du calendar et des participants (handleChange)
+        // Input Select Participants : faire la différence entre maxPeople(prop de tour) et de participants qui ont déjà validé leur booking (prop de booking)
 
 /* ---- bouton add to cart-----*/
-// Poster les datas suivantes dans BDD : status : added to cart ; tour: tourId ; Participants & Chosen Date
+        // Poster les datas suivantes dans BDD : status : added to cart ; tour: tourId ; Participants & Chosen Date

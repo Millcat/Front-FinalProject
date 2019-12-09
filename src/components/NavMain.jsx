@@ -9,9 +9,7 @@ const NavMain = () => {
     <Navbar expand="lg" className="nav">
       <div className="container-nav">
         <div className="container-nav-left">
-          <Navbar.Brand>
-            <img src="" id="logo-paris" alt="" />
-          </Navbar.Brand>
+          <img src="../logo-paris.png" id="logo-paris" alt="logo-paris" />
           <Navbar id="basic-navbar-nav">
             <Nav className="mr-auto">
               <NavLink exact to="/" className="nav-link">

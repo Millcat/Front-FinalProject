@@ -46,14 +46,14 @@ const ManageTour = props => {
 
 
   return (
-    <div>
+    <div className="container-table">
       <h1>Edit your experience</h1>
       <table className="table">
         <thead>
           <tr>
             <th>Name</th>
             <th>Tour Picture</th>
-            <th>Thematic</th>
+            <th>Max people</th>
             <th>Price/person</th>
             <th>Edit</th>
             <th>Delete</th>
@@ -71,7 +71,7 @@ const ManageTour = props => {
                   <td>
                     <img src={tour.tourPicture} alt={tour.name} className="tourPicture" />
                   </td>
-                  <td> {tour.thematics}</td>
+                  <td>{tour.maxPeople}</td>
                   <td>{tour.price}</td>
                   <td>
                     <NavLink to={"/edit-tour/" + tour._id}><Button className="btn">Edit</Button></NavLink>
@@ -83,7 +83,6 @@ const ManageTour = props => {
               )))}
         </tbody>
       </table>
-      <Counter />
     </div>
   );
 }

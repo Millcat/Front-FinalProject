@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import axios from "axios";
 import Form from "react-bootstrap/Form";
-import "../css/createTour.css";
+import "../css/tourForm.css";
 import Autocomplete from "../components/Autocomplete";
-import { NavLink } from "react-router-dom"
+import { NavLink } from "react-router-dom";
 
 const CreateTour = props => {
   const [formTour, setFormTour] = useState({});
@@ -18,7 +18,7 @@ const CreateTour = props => {
     axios
       .post(process.env.REACT_APP_BACKEND_URL + "/tours", formData)
       .then(res => {
-        setMessage(!message)
+        setMessage(!message);
       })
       .catch(err => {
         console.log(err);
@@ -30,9 +30,8 @@ const CreateTour = props => {
     const value = e.target.value;
     if (e.target.type === "file") {
       setFormTour({ ...formTour, [key]: e.target.files[0] });
-    }
-    else {
-      setFormTour({ ...formTour, [e.target.name]: e.target.value });
+    } else {
+      setFormTour({ ...formTour, [e.target.name]: value });
     }
   }
 
@@ -143,12 +142,13 @@ const CreateTour = props => {
             required
           />
         </Form.Group>
-        <div className="container-links">
-          <button>
-            Submit</button>
+        <div className="container-btn-links">
+          <button className="btn">Submit</button>
           {message && <p>The experience has been created succesfully !</p>}
           {/* <NavLink to={"/tours/:id"}>See my experience</NavLink> */}
-          <NavLink to={"/manage-tour/"}>See my list of experiences</NavLink>
+          <NavLink className="links" to={"/manage-tour/"}>
+            <i class="fas fa-chevron-right"></i>See my list of experiences
+          </NavLink>
         </div>
       </Form>
     </div>
