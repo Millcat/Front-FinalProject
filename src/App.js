@@ -4,7 +4,6 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 // import the views
 import Home from "./views/Home";
-
 import SignIn from "./views/SignIn";
 import SignUp from "./views/SignUp";
 import AllTours from "./views/AllTours";
@@ -14,6 +13,7 @@ import Footer from "./components/Footer";
 import CreateTour from "./views/CreateTour";
 import ManageTour from "./views/ManageTour";
 import EditTour from "./views/EditTour";
+import Tour from "./views/Tour"
 
 function App() {
   return (
@@ -28,6 +28,7 @@ function App() {
         <Route path="/create-tour" component={CreateTour} />
         <Route path="/manage-tour" component={ManageTour} />
         <Route path="/edit-tour/:id" component={EditTour} />
+        <Route path="/tours/:id" component={Tour} />
       </Switch>
       <Footer />
     </div>

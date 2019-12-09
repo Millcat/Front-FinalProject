@@ -15,7 +15,7 @@ function Tour(props) {
         axios.get(process.env.REACT_APP_BACKEND_URL + "/tours/" + tourId)
             .then(res => {
                 setTour(res.data);
-                console.log(res);
+                console.log(res.data);
             })
             .catch(err => {
                 console.log(err);
@@ -41,18 +41,28 @@ function Tour(props) {
     };
 
     // Afficher le nbre de places restantes en fonction de la date sélectionnée
-    // function getRemainingSpots() {
-    //     const maxPeople = tour.maxPeople
-    //     tour.bookings.map(booking => {
-    //         for (let i = 0; i < (maxPeople - booking.participants); i++) {
-    //             return i
-    //         }
-    //     })
-    // }
+    function getRemainingSpots() {
+        const maxPeople = tour.maxPeople
+        const participants = tour.bookings.reduce((acc, curr) => {
+            return acc += curr.participants;
+        }, 0);
+        const remainingSpots = maxPeople - participants;
+        const arr = [];
+        for (let i = 0; i < remainingSpots; i++) {
+            arr.push(i + 1)
+        }
+        return arr;
+
+        // return tour.bookings.map(booking => {
+        //     for (let i = 0; i < (maxPeople - booking.participants); i++) {
+        //         return i
+        //     }
+        // })
+    }
 
     const imageUrl = tour.tourPicture
 
-
+    if (Object.keys(tour).length === 0) return <div>Nothing to show</div>
     return (
         <div>
             <header className="header" style={{ backgroundImage: `url(${imageUrl})` }}>
@@ -92,7 +102,7 @@ function Tour(props) {
                         <Calendar />
                         <label>Select participants:</label>
                         <select name="maxPeople">
-                            <option onChange={handleChange}></option>
+                            {getRemainingSpots().map(spot => (<option>{spot}</option>))}
                         </select>
                     </form>
                 </section>
