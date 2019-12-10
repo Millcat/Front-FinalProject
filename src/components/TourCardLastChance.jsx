@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 // import Counter from "./Counter";
 
 function TourCardLastChance() {
@@ -25,7 +26,9 @@ function TourCardLastChance() {
           <div className="infos-bottom">
             <h3>{tour.name}</h3>
             {/* <Counter /> */}
-            <button>See Tour</button>
+            <Link to={"/tours/" + tour._id}>
+              <button>See Tour</button>
+            </Link>
           </div>
         </div>
       ))}
