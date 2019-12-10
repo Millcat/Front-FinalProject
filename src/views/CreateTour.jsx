@@ -4,7 +4,7 @@ import Form from "react-bootstrap/Form";
 import "../css/tourForm.css";
 import Autocomplete from "../components/Autocomplete";
 import { NavLink } from "react-router-dom";
-import CalendarForm from "../components/CalendarForm"
+// import CalendarForm from "../components/CalendarForm"
 
 const CreateTour = props => {
   const [formTour, setFormTour] = useState({});
@@ -25,15 +25,14 @@ const CreateTour = props => {
     }
   }
 
-  // Change of calendar input range
-  const handleDatesChange = (startDate, endDate) => {
-    console.log(startDate._d, endDate)
-    setFormTour({ ...formTour, startDate: startDate._d, endDate: endDate ? endDate._d : null }) // -d n'est pad defined ???
-  }
+  // const handleDatesChange = (startDate, endDate) => {
+  //   console.log(startDate._d, endDate)
+  //   setFormTour({ ...formTour, startDate: startDate._d, endDate: endDate ? endDate._d : null }) // -d n'est pad defined ???
+  // }
 
   const handleSubmit = e => {
     e.preventDefault();
-    const date = formTour.dates // Afficher dans la BDD une array de date (dates comprises dans le range)
+    // const date = formTour.dates 
     const formData = new FormData();
     for (let key in formTour) {
       formData.append(key, formTour[key]);
@@ -86,8 +85,14 @@ const CreateTour = props => {
           />
         </Form.Group>
         <Form.Group controlId="exampleForm.ControlInput3">
-          <Form.Label>Select a range of dates:</Form.Label>
-          <CalendarForm name="dates" handleDatesChange={handleDatesChange} />
+          <Form.Label>Select a date:</Form.Label>
+          <Form.Control
+            onChange={handleChange}
+            type="date"
+            name="date"
+            placeholder="6"
+          />
+          {/* <CalendarForm name="dates" handleDatesChange={handleDatesChange} /> */}
           {/* <Form.Control onChange={handleChange} type="date" name="dates" /> */}
         </Form.Group>
         <Form.Group controlId="exampleForm.ControlInput3">
@@ -161,7 +166,7 @@ const CreateTour = props => {
           />
         </Form.Group>
         <div className="container-links">
-          <button>Submit</button>
+          <button className="btn">Submit</button>
           {message && <p>The experience has been created succesfully !</p>}
           {/* <NavLink to={"/tours/:id"}>See my experience</NavLink> */}
           <NavLink className="links" to={"/manage-tour/"}>

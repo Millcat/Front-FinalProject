@@ -3,7 +3,6 @@ import axios from "axios";
 import "../css/manageTour.css";
 import { NavLink } from "react-router-dom";
 import Button from "react-bootstrap/Button";
-import Counter from "../components/Counter";
 
 const ManageTour = props => {
   const [tours, setTours] = useState([]);
@@ -64,34 +63,35 @@ const ManageTour = props => {
               <td>No experiences to display</td>
             </tr>
           ) : (
-            tours.map((tour, i) => (
-              <tr key={i}>
-                <td>{tour.name}</td>
-                <td>
-                  <img
-                    src={tour.tourPicture}
-                    alt={tour.name}
-                    className="tourPicture"
-                  />
-                </td>
-                <td>{tour.maxPeople}</td>
-                <td>{tour.price}</td>
-                <td>
-                  <NavLink to={"/edit-tour/" + tour._id}>
-                    <Button className="btn">Edit</Button>
-                  </NavLink>
-                </td>
-                <td>
-                  <Button
-                    className="btn-delete"
-                    onClick={e => handleDelete(tour._id)}
-                  >
-                    Delete
-                  </Button>
-                </td>
-              </tr>
-            ))
-          )}
+              tours.map((tour, i) => (
+                <tr key={i}>
+                  <td>{tour.name}</td>
+                  <td>
+                    <img
+                      src={tour.tourPicture}
+                      alt={tour.name}
+                      className="tourPicture"
+                    />
+                  </td>
+                  <td>{tour.maxPeople}</td>
+                  <td>{tour.price}</td>
+                  <td>
+                    <NavLink to={"/edit-tour/" + tour._id}>
+                      <Button className="btn">Edit</Button>
+                    </NavLink>
+                  </td>
+                  <td>
+                    {/* <Button
+                      className="btn-delete"
+                      onClick={e => handleDelete(tour._id)}
+                    >
+                      Delete
+                  </Button> */}
+                    <i class="fa fa-window-close" aria-hidden="true" onClick={e => handleDelete(tour._id)} ></i>
+                  </td>
+                </tr>
+              ))
+            )}
         </tbody>
       </table>
     </div>
