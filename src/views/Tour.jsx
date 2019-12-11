@@ -3,31 +3,52 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import "../css/tour.css";
 import moment from "moment";
-import Rating from "../components/Rating";
 
 function Tour(props) {
   const [tour, setTour] = useState({});
+  const [bookings, setBookings] = useState([])
   const [selectChoices, setSelectChoices] = useState(null); // To chose date and number of participants
   const localStorageCart = JSON.parse(localStorage.getItem("cart")) || [];
-  const [cart, setCart] = useState(localStorageCart); // à mettre dans Tour.jsx ou dans App.js ?
-  // Récupérer les datas du Tour pour les afficher ==> OK mais pas le tourId !
+  const [cart, setCart] = useState(localStorageCart);
+  const [remainingSpots, setRemainingSpots] = useState([]);
+
   useEffect(() => {
     const tourId = props.match.params.id;
     axios
       .get(process.env.REACT_APP_BACKEND_URL + "/tours/" + tourId)
       .then(res => {
+        console.log("res", res)
         setTour(res.data);
         // console.log(res.data);
+        // setRemainingSpots(getRemainingSpots())
       })
       .catch(err => {
         console.log(err);
       });
   }, []);
 
+  useEffect(() => {
+    const tourId = props.match.params.id;
+    axios
+      .get(process.env.REACT_APP_BACKEND_URL + "/booking")
+      .then(res => {
+        console.log("res booking", res)
+        setBookings(res.data.filter(b => b.tour === tourId))
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }, []);
+
+
   // Récupérer les valeurs de l'input participants + input du calendar ===> KO car pas de calendar + n'arrive pas à afficher des valeurs sur le select nb of participants
   const handleChange = e => {
     setSelectChoices({ ...selectChoices, [e.target.name]: e.target.value }); // ajouter le calendar
   };
+
+  useEffect(() => {
+    setRemainingSpots(getRemainingSpots())
+  }, [tour]);
 
   // Ajouter le booking au panier
   const addToCart = e => {
@@ -56,16 +77,25 @@ function Tour(props) {
 
   // Afficher le nbre de places restantes pour un tour
   function getRemainingSpots() {
-    const maxPeople = tour.maxPeople;
-    const participants = tour.bookings.reduce((acc, curr) => {
-      return (acc += curr.participants);
-    }, 0);
-    const remainingSpots = maxPeople - participants;
+    console.log("tour", tour)
+    console.log("bookins", bookings)
     const arr = [];
-    for (let i = 0; i < remainingSpots; i++) {
-      arr.push(i + 1);
+    const maxPeople = tour.maxPeople;
+    if (bookings.length) {
+      const participants = bookings.reduce((acc, curr) => {
+        return (acc += curr.participants);
+      }, 0);
+      const remainingSpots = maxPeople - participants;
+      for (let i = 0; i < remainingSpots; i++) {
+        arr.push(i + 1);
+      }
     }
-    return arr;
+    else {
+      for (let i = 0; i < maxPeople; i++) {
+        arr.push(i + 1);
+      }
+    }
+    return arr
   }
 
   const imageUrl = tour.tourPicture;
@@ -150,9 +180,9 @@ function Tour(props) {
                 <form>
                   <i class="fas fa-user"></i>
                   <select name="participants" onChange={handleChange}>
-                    {getRemainingSpots().map((spot, i) => (
+                    {remainingSpots.length ? remainingSpots.map((spot, i) => (
                       <option key={i}>{spot}</option>
-                    ))}
+                    )) : ""}
                   </select>
                   <button className="btn-cart" onClick={addToCart}>
                     Add to cart
