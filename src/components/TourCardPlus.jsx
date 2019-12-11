@@ -29,7 +29,7 @@ function TourCardPlus(props) {
               <span> {tour.price}</span> €
             </p>
             <Link to={"/tours/" + tour._id}>
-              <button>About this tour</button>
+              <button className="btn">See tour</button>
             </Link>
           </div>
         </div>
