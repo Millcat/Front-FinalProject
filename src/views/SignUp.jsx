@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import handler from "../api/handler"
-import "../css/auth.css"
 import "../index.css"
 import { Link } from "react-router-dom";
 
