@@ -3,6 +3,7 @@ import axios from "axios";
 import Form from "react-bootstrap/Form";
 import "../css/tourForm.css";
 import { NavLink } from "react-router-dom";
+import moment from "moment"
 
 const EditTour = props => {
   const [selectedTour, setSelectedTour] = useState(null); // mon state initial correspond à un formulaire déjà rempli ?
@@ -37,6 +38,7 @@ const EditTour = props => {
       .then(res => setMessage(!message))
       .catch(err => console.log(err));
   };
+
 
   return (
     selectedTour !== null && (
@@ -74,10 +76,11 @@ const EditTour = props => {
             <Form.Label>Dates</Form.Label>
             <Form.Control
               onChange={handleChange}
-              value={selectedTour.Dates}
+              value={moment(selectedTour.date).format('YYYY-MM-DD')}
               type="date"
-              name="dates"
+              name="date"
             />
+            {console.log(moment(selectedTour.date).format('L'))}
           </Form.Group>
           <Form.Group controlId="exampleForm.ControlInput3">
             <Form.Label>Price/person</Form.Label>
@@ -89,7 +92,7 @@ const EditTour = props => {
             />
           </Form.Group>
           <Form.Group controlId="exampleForm.ControlInput3">
-            <Form.Label>Price/person</Form.Label>
+            <Form.Label>Duration</Form.Label>
             <Form.Control
               onChange={handleChange}
               value={selectedTour.price}

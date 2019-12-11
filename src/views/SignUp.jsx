@@ -1,9 +1,9 @@
-// Submit doesn't work => Status 400
-
 import React, { useState } from "react";
-import axios from "axios";
-import Form from "react-bootstrap/Form";
-import Col from "react-bootstrap/Col";
+import handler from "../api/handler"
+import "../css/auth.css"
+import "../index.css"
+import { Link } from "react-router-dom";
+
 
 function SignUp(props) {
   const [formUser, setFormUser] = useState({});
@@ -14,14 +14,12 @@ function SignUp(props) {
     for (let key in formUser) {
       formData.append(key, formUser[key]);
     }
-    axios
-      .post(process.env.REACT_APP_BACKEND_URL + "/signup", formData)
+    handler.post(process.env.REACT_APP_BACKEND_URL + "/signup", formData)
       .then(user => {
         console.log(user);
-        props.history.push("/");
+        props.history.push("/sign-in");
       })
       .catch(err => {
-        // Gestion d'erreur todo
         console.log(err.response);
       });
   }
@@ -33,52 +31,58 @@ function SignUp(props) {
       setFormUser({ ...formUser, [key]: e.target.files[0] });
     } else {
       setFormUser({ ...formUser, [e.target.name]: value });
-      console.log(e.target.value);
     }
   }
 
   return (
-    <div className="container-form">
-      <Form onSubmit={handleSubmit} onChange={handleChange}>
-        <Form.Group controlId="formGridAddress1">
-          <Form.Label>Name :</Form.Label>
-          <Form.Control name="username" type="text" placeholder="John Doe" />
-        </Form.Group>
-        <Form.Row>
-          <Form.Group as={Col} controlId="formGridState">
-            <Form.Label>Picture:</Form.Label>
-            <Form.Control name="pictureTour" type="file"></Form.Control>
-          </Form.Group>
-          <Form.Group as={Col} controlId="formGridZip">
-            <Form.Label>Age:</Form.Label>
-            <Form.Control type="number" name="age"></Form.Control>
-          </Form.Group>
-        </Form.Row>
-        <Form.Row>
-          <Form.Group as={Col} controlId="formGridEmail">
-            <Form.Label>Email</Form.Label>
-            <Form.Control name="email" type="email" placeholder="Enter email" />
-          </Form.Group>
-          <Form.Group as={Col} controlId="formGridPassword">
-            <Form.Label>Password</Form.Label>
-            <Form.Control
-              name="password"
-              type="password"
-              placeholder="Password"
-            />
-          </Form.Group>
-        </Form.Row>
-        <Form.Group controlId="exampleForm.ControlTextarea1">
-          <Form.Label>Description</Form.Label>
-          <Form.Control
+    <div className="form-container">
+      <form onSubmit={handleSubmit} onChange={handleChange} className="form-sign-up">
+        <div className="col2">
+          <div className="username">
+            <label>Username:</label>
+            <input name="username" type="text" placeholder="John Doe" />
+          </div>
+          <div className="email">
+            <label>Email:</label>
+            <input name="email" type="email" placeholder="Enter email" />
+          </div>
+        </div>
+        <div className="col2">
+          <div className="input">
+            <label>Picture:</label>
+            <input name="userPicture" type="file" className="picture" />
+          </div>
+          <div className="input">
+            <label>Age:</label>
+            <input className="age" type="number" name="age" />
+          </div>
+        </div>
+        <div className="input col1">
+          <label>Password:</label>
+          <input
+            className="password"
+            name="password"
+            type="password"
+            placeholder="Password"
+          />
+        </div>
+        <div className="input col1">
+          <label>Description:</label>
+          <textarea
             as="textarea"
             rows="5"
             name="description"
             placeholder="Discover Paris off the beaten track"
           />
-        </Form.Group>
-        <button>Submit</button>
-      </Form>
+        </div>
+        <button className="btn">Submit</button>
+        <p className="parag">
+          Already a member ? please{" "}
+          <Link to="/sign-in" className="link">
+            signin
+          </Link>
+        </p>
+      </form>
     </div>
   );
 }

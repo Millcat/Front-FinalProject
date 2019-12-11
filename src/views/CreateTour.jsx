@@ -1,9 +1,11 @@
+import { useEffect } from 'react'
 import React, { useState } from "react";
 import axios from "axios";
 import Form from "react-bootstrap/Form";
 import "../css/tourForm.css";
 import Autocomplete from "../components/Autocomplete";
 import { NavLink } from "react-router-dom";
+
 // import CalendarForm from "../components/CalendarForm"
 
 const CreateTour = props => {
@@ -38,13 +40,28 @@ const CreateTour = props => {
       formData.append(key, formTour[key]);
     }
     axios
-      .post(process.env.REACT_APP_BACKEND_URL + "/tours", formData) // Envoyer les datas ici
+      .post(process.env.REACT_APP_BACKEND_URL + "/tours", formData, { withCredentials: true }) // Envoyer les datas ici
       .then(res => {
         setMessage(!message);
       })
       .catch(err => {
         console.log(err);
       });
+
+
+    // Quan je créé le tour je veux :
+    // Envoyer le Tour ID dans BDD UserId
+    // Envoyer le UserID dans la BDD TourId
+
+    // const userId = props.match.params.id
+    // const tourId = props.match.params.id
+    // axios.post(process.env.REACT_APP_BACKEND_URL + "/user/" + userId, tourId)
+    //   .then(res => {
+    //     console.log(res)
+    //   })
+    //   .catch(err => {
+    //     console.log(err)
+    //   })
   };
 
 

@@ -3,14 +3,11 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import { BrowserRouter } from "react-router-dom";
-import { ParallaxProvider } from 'react-scroll-parallax';
 
 ReactDOM.render(
-    <ParallaxProvider>
-        <BrowserRouter>
-            <App />
-        </BrowserRouter>
-    </ParallaxProvider>,
+    <BrowserRouter>
+        <App />
+    </BrowserRouter>,
     document.getElementById("root")
 );
 

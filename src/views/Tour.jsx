@@ -1,3 +1,4 @@
+
 import React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
@@ -24,15 +25,11 @@ function Tour(props) {
       });
   }, []);
 
+
   // Récupérer les valeurs de l'input participants + input du calendar ===> KO car pas de calendar + n'arrive pas à afficher des valeurs sur le select nb of participants
   const handleChange = e => {
     setSelectChoices({ ...selectChoices, [e.target.name]: e.target.value }); // ajouter le calendar
   };
-
-  // @helene => sert à quoi ? ne sert plus maintenant qu'on a qu'une seule date
-  // const handleDateChange = date => {
-  //   setSelectChoices({ ...selectChoices, date: date._d });
-  // };
 
   // Ajouter le booking au panier
   const addToCart = e => {
@@ -73,21 +70,16 @@ function Tour(props) {
     return arr;
   }
 
-  const imageUrl = tour.tourPicture;
 
-  const newDate = moment(tour.date).format("[The] Do [of] MMMM, YYYY");
 
-  // console.log(newDate);
+  const imageUrl = tour.tourPicture
+  const newDate = moment(tour.date).format('[The] Do [of] MMMM, YYYY');
 
-  if (Object.keys(tour).length === 0) return <div>No Spots left</div>;
+  if (Object.keys(tour).length === 0) return <div>No Spots left</div>
   return (
     <div>
-      <header
-        className="header overlay"
-        style={{ backgroundImage: `url(${imageUrl})` }}
-      >
+      <header className="header overlay" style={{ backgroundImage: `url(${imageUrl})` }}>
         <h1 id="tour-name">{tour.name}</h1>
-        <Rating />
       </header>
       <div className="container-all-content">
         <main className="main">
@@ -96,32 +88,20 @@ function Tour(props) {
               <h5>TOUR OVERVIEW</h5>
               <div className="containers-overview">
                 <div className="container-overview">
-                  <div>
-                    <p>Price per person:</p>
-                    <p>{tour.price}€</p>
-                  </div>
-                  <div>
-                    <p>Maximum Number of People: </p>
-                    <p>{tour.maxPeople}€</p>
-                  </div>
+                  <div><p>Price per person:</p><p>{tour.price}€</p></div>
+                  <div><p>Maximum Number of People: </p><p>{tour.maxPeople}€</p></div>
                 </div>
                 <div className="container-overview">
-                  <div>
-                    <p>Language(s):</p>
-                    <p>{tour.languages}</p>
-                  </div>
-                  <div>
-                    <p>Tour duration:</p>
-                    <p>{tour.duration} hours</p>
-                  </div>
+                  <div><p>Language(s):</p><p>{tour.languages}</p></div>
+                  <div><p>Tour duration:</p><p>{tour.duration} hours</p></div>
                 </div>
               </div>
             </section>
             <section id="guide-card">
               <h5>YOUR GUIDE</h5>
-              {/* <p>{tour.user.username}</p>
-                    <p>{tour.user.age}</p>
-                    <p>{tour.user.description}</p> */}
+              {/* <p>{tour.guide.username}</p>
+                            <p>{tour.guide.age}</p>
+                            <p>{tour.guide.description}</p> */}
             </section>
             <section id="meeting-location">
               <h5>MEETING LOCATION</h5>
@@ -134,38 +114,20 @@ function Tour(props) {
           </div>
           <aside>
             <div className="container-aside">
-              <div className="h2-title">
-                <h2>BOOKING</h2>
-              </div>
+              <div className="h2-title"><h2>BOOKING</h2></div>
               <div className="aside-infos">
-                <div>
-                  <i className="fas fa-check"></i>
-                  <span>Instant confirmation</span>
-                </div>
-                <div>
-                  <i className="fas fa-check"></i>
-                  <span>Cancel up to 3 days</span>
-                </div>
-                <div>
-                  <i className="fas fa-check"></i>
-                  <span>Best Price Guarantee</span>
-                </div>
+                <div><i class="fas fa-check"></i><span>Instant confirmation</span></div>
+                <div><i class="fas fa-check"></i><span>Cancel up to 3 days</span></div>
+                <div><i class="fas fa-check"></i><span>Best Price Guarantee</span></div>
               </div>
               <div className="form-elements">
-                <div className="date">
-                  <i className="fas fa-calendar-day"></i>
-                  <p>{newDate}</p>
-                </div>
+                <div className="date"><i class="fas fa-calendar-day"></i><p>{newDate}</p></div>
                 <form>
-                  <i className="fas fa-user"></i>
+                  <i class="fas fa-user"></i>
                   <select name="participants" onChange={handleChange}>
-                    {getRemainingSpots().map((spot, i) => (
-                      <option key={i}>{spot}</option>
-                    ))}
+                    {getRemainingSpots().map((spot, i) => (<option key={i}>{spot}</option>))}
                   </select>
-                  <button className="btn-cart" onClick={addToCart}>
-                    Add to cart
-                  </button>
+                  <button className="btn-cart" onClick={addToCart}>Add to cart</button>
                 </form>
               </div>
             </div>

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "../css/manageTour.css";
 import { NavLink } from "react-router-dom";
-import Button from "react-bootstrap/Button";
+
 
 const ManageTour = props => {
   const [tours, setTours] = useState([]);
@@ -77,16 +77,10 @@ const ManageTour = props => {
                   <td>{tour.price}</td>
                   <td>
                     <NavLink to={"/edit-tour/" + tour._id}>
-                      <Button className="btn">Edit</Button>
+                      <button className="btn">Edit</button>
                     </NavLink>
                   </td>
                   <td>
-                    {/* <Button
-                      className="btn-delete"
-                      onClick={e => handleDelete(tour._id)}
-                    >
-                      Delete
-                  </Button> */}
                     <i class="fa fa-window-close" aria-hidden="true" onClick={e => handleDelete(tour._id)} ></i>
                   </td>
                 </tr>
