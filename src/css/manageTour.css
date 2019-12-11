@@ -1,20 +1,21 @@
 .container-table {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
 }
 
+/* modified by helene. To fix. */
 
 .table {
-    padding: 5px;
-    margin: 20px 50px;
-    width: 80%;
-    border: 1px solid #dee2e6;
+  padding: 5px;
+  margin: 20px 50px;
+  width: 80%;
+  border: 1px solid #dee2e6;
 }
 
 .tourPicture {
-    width: 200px;
-    height: 122px;
+  width: 200px;
+  height: 122px;
 }

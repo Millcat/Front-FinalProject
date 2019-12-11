@@ -1,34 +1,35 @@
 .form {
-    width: 40%
+  width: 40%;
 }
+/* above : deleted by helene. To fix. */
 
 .container-form {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
 
 .fa-chevron-right {
-    padding-right: 5px;
-    color: #381460;
-    font-size: 14px;
+  padding-right: 5px;
+  color: #381460;
+  font-size: 14px;
 }
 
 .container-btn-links {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
-  }
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
 
 .container-links {
-    display: flex;
-    justify-content: flex-start;
-    flex-direction: column;
-    color: #003366
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  color: #003366;
 }
 
 .links {
-    color: #003366
+  color: #003366;
 }
