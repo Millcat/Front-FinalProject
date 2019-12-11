@@ -1,0 +1,48 @@
+h1 {
+    margin-bottom: 30px;
+    margin-top: 30px;
+}
+
+/*SIGN IN*/
+
+.container-form {
+    display: flex;
+    justify-content: center;
+}
+
+.form-signin {
+    width: 300px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.container-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: white !important;
+}
+
+/*SIGN UP*/
+
+.form-signup {
+    width: 400px;
+}
+
+.col2 {
+    display: flex;
+    flex-direction: column;
+}
+
+.container-btn-signup {
+margin-top: 30px;
+display: flex;
+    justify-content: center;
+    align-items: center;
+    background: white !important;
+}
+
+.parag {
+    text-align: center;
+}

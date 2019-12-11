@@ -12,7 +12,7 @@
 
 .fa-chevron-right {
   padding-right: 5px;
-  color: #381460;
+  color: #fe4e6e;
   font-size: 14px;
 }
 
@@ -23,13 +23,21 @@
   align-items: center;
 }
 
+.div-links {
+  display: flex;
+  flex-direction: column;
+}
+
 .container-links {
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
+  align-items: center;
   flex-direction: column;
   color: #003366;
+  margin-bottom: 30px;
 }
 
 .links {
   color: #003366;
 }
+

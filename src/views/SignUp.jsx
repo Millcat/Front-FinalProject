@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 import handler from "../api/handler"
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
+import Col from "react-bootstrap/Button";
 import "../index.css"
 import { Link } from "react-router-dom";
+
 
 
 function SignUp(props) {
@@ -34,56 +38,49 @@ function SignUp(props) {
   }
 
   return (
-    <div className="form-container">
-      <form onSubmit={handleSubmit} onChange={handleChange} className="form-sign-up">
-        <div className="col2">
-          <div className="username">
-            <label>Username:</label>
-            <input name="username" type="text" placeholder="John Doe" />
-          </div>
-          <div className="email">
-            <label>Email:</label>
-            <input name="email" type="email" placeholder="Enter email" />
-          </div>
+    <div className="container-form">
+      <h1>Create your account</h1>
+      <Form onSubmit={handleSubmit} onChange={handleChange} className="form-signup">
+        <Form.Row className="col2">
+          <Form.Group className="label-input">
+            <Form.Label className="label">Username:</Form.Label>
+            <Form.Control type="text" placeholder="Enter email" name="username" />
+          </Form.Group>
+          <Form.Group className="label-input" >
+            <Form.Label className="label">Email:</Form.Label>
+            <Form.Control type="email" placeholder="Password" />
+          </Form.Group>
+        </Form.Row>
+
+        <Form.Row className="col2">
+          <Form.Group className="label-input">
+            <Form.Label className="label">Age:</Form.Label>
+            <Form.Control type="number" name="age" />
+          </Form.Group>
+          <Form.Group className="label-input">
+            <Form.Label className="label">Picture:</Form.Label>
+            <Form.Control type="file" name="userPicture" />
+          </Form.Group>
+          <Form.Group className="label-input">
+            <Form.Label className="label">Password:</Form.Label>
+            <Form.Control type="password" name="password" />
+          </Form.Group>
+        </Form.Row>
+
+        <Form.Row controlId="exampleForm.ControlTextarea1">
+          <Form.Label>Description:</Form.Label>
+          <Form.Control as="textarea" rows="5" name="description" placeholder="Discover Paris off the beaten track" />
+        </Form.Row>
+        <div className="container-btn-signup">
+          <Button type="submit" className="btn btn-sign-up">Sign Up</Button>
         </div>
-        <div className="col2">
-          <div className="input">
-            <label>Picture:</label>
-            <input name="userPicture" type="file" className="picture" />
-          </div>
-          <div className="input">
-            <label>Age:</label>
-            <input className="age" type="number" name="age" />
-          </div>
-        </div>
-        <div className="input col1">
-          <label>Password:</label>
-          <input
-            className="password"
-            name="password"
-            type="password"
-            placeholder="Password"
-          />
-        </div>
-        <div className="input col1">
-          <label>Description:</label>
-          <textarea
-            as="textarea"
-            rows="5"
-            name="description"
-            placeholder="Discover Paris off the beaten track"
-          />
-        </div>
-        <button className="btn">Submit</button>
         <p className="parag">
-          Already a member ? please{" "}
-          <Link to="/sign-in" className="link">
-            signin
-          </Link>
+          Already a member ? please <Link to="/sign-in" className="link"> Signin</Link>
         </p>
-      </form>
+      </Form>
     </div>
   );
 }
+
 
 export default SignUp;

@@ -3,7 +3,9 @@ import { Link } from "react-router-dom";
 import { useState, useContext } from "react"
 import handler from "../api/handler"
 import UserContext from "./../auth/UserContext";
-
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
+import "../css/auth.css"
 
 function SignIn(props) {
 
@@ -28,26 +30,32 @@ function SignIn(props) {
 
   return (
     <div className="container-form">
-      <p>{message}</p>
-      <form onSubmit={handleSubmit}>
-        <label>Email address:</label>
-        <input
-          type="email" name="email" placeholder="Enter email"
-          defaultValue="anais@gmail.com"
-          value={email}
-          required
-          onChange={e => setEmail(e.target.value)} />
-        <label>Password:</label>
-        <input
-          name="password"
-          type="password"
-          placeholder="Password"
-          defaultValue="1234"
-          required
-          value={password} onChange={e => setPassword(e.target.value)}
-        />
-        <button type="submit">Submit</button>
-      </form>
+      <h1>Sign in</h1>
+      <Form onSubmit={handleSubmit} className="form-signin">
+        <Form.Group controlId="formBasicEmail" className="container-input">
+          <Form.Label>Email address:</Form.Label>
+          <Form.Control
+            type="email"
+            name="email"
+            placeholder="Enter email"
+            value={email}
+            required
+            onChange={e => setEmail(e.target.value)} />
+        </Form.Group>
+        <Form.Group controlId="formBasicPassword" className="container-input">
+          <Form.Label>Password:</Form.Label>
+          <Form.Control name="password"
+            type="password"
+            placeholder="Password"
+            defaultValue="1234"
+            required
+            value={password} onChange={e => setPassword(e.target.value)} />
+        </Form.Group>
+        <p>{message}</p>
+        <div className="container-btn">
+          <Button variant="primary" type="submit">Sign In</Button>
+        </div>
+      </Form>
       <p className="parag">
         No account yet ? please{" "}
         <Link to="/sign-up" className="link">
@@ -57,13 +65,5 @@ function SignIn(props) {
     </div>
   );
 }
-
-
-
-
-// Comment afficher un message quand :
-// Wrong credentials (username || mdp) ou champs pas remplis
-// Le username existe déjà
-
 
 export default SignIn;
