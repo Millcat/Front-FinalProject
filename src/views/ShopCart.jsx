@@ -64,7 +64,7 @@ const ShopCart = () => {
                 <td>{moment(tour.date).format("[The] Do [of] MMMM, YYYY")}</td>
                 <td>{tour.participants}</td>
                 <td>{tour.price}</td>
-                <td>{tour.price * tour.participants}</td>
+                <td>{tour.totalPricePerTour}</td>
                 <td>
                   <i
                     className="fa fa-window-close"
