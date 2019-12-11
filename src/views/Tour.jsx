@@ -60,6 +60,7 @@ function Tour(props) {
         price: tour.price,
         tourName: tour.name,
         participants: selectChoices ? selectChoices.participants : 1,
+        totalPricePerTour: tour.price * tour.participants,
         date: tour.date // careful à notre nouveau modele
         // add user._id quand le login marchera
       }
