@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import 'react-dates/initialize';
-import { DateRangePicker, DayPickerRangeController } from 'react-dates';
-import moment from 'moment'
+import { DateRangePicker } from 'react-dates';
 import 'react-dates/lib/css/_datepicker.css';
 export const pureComponentAvailable = true;
 
