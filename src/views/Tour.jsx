@@ -6,7 +6,7 @@ import moment from "moment";
 
 function Tour(props) {
   const [tour, setTour] = useState({});
-  const [bookings, setBookings] = useState([])
+  const [bookings, setBookings] = useState([]);
   const [selectChoices, setSelectChoices] = useState(null); // To chose date and number of participants
   const localStorageCart = JSON.parse(localStorage.getItem("cart")) || [];
   const [cart, setCart] = useState(localStorageCart);
@@ -17,7 +17,7 @@ function Tour(props) {
     axios
       .get(process.env.REACT_APP_BACKEND_URL + "/tours/" + tourId)
       .then(res => {
-        console.log("res", res)
+        console.log("res", res);
         setTour(res.data);
         // console.log(res.data);
         // setRemainingSpots(getRemainingSpots())
@@ -32,14 +32,13 @@ function Tour(props) {
     axios
       .get(process.env.REACT_APP_BACKEND_URL + "/booking")
       .then(res => {
-        console.log("res booking", res)
-        setBookings(res.data.filter(b => b.tour === tourId))
+        console.log("res booking", res);
+        setBookings(res.data.filter(b => b.tour === tourId));
       })
       .catch(err => {
         console.log(err);
       });
   }, []);
-
 
   // Récupérer les valeurs de l'input participants + input du calendar ===> KO car pas de calendar + n'arrive pas à afficher des valeurs sur le select nb of participants
   const handleChange = e => {
@@ -47,7 +46,7 @@ function Tour(props) {
   };
 
   useEffect(() => {
-    setRemainingSpots(getRemainingSpots())
+    setRemainingSpots(getRemainingSpots());
   }, [tour]);
 
   // Ajouter le booking au panier
@@ -59,8 +58,8 @@ function Tour(props) {
         tourId: tour._id,
         price: tour.price,
         tourName: tour.name,
-        participants: selectChoices ? selectChoices.participants : 1,
-        totalPricePerTour: tour.price * tour.participants,
+        participants: selectChoices ? Number(selectChoices.participants) : 1,
+        // totalPricePerTour: tour.price * tour.participants,
         date: tour.date // careful à notre nouveau modele
         // add user._id quand le login marchera
       }
@@ -72,14 +71,17 @@ function Tour(props) {
     // update the number of tours in the shopCart
     // not the "React way" to do this but it's working...
     document.getElementById("nbOfToursInCart").innerHTML = updatedCart.length;
-  };
 
-  console.log(cart.length);
+    console.log(updatedCart.length);
+    console.log("nb participants: " + tour.participants);
+    console.log("price/pers: " + tour.price);
+    console.log("totalPricePerTour: " + tour.totalPricePerTour);
+  };
 
   // Afficher le nbre de places restantes pour un tour
   function getRemainingSpots() {
-    console.log("tour", tour)
-    console.log("bookins", bookings)
+    console.log("tour", tour);
+    console.log("bookins", bookings);
     const arr = [];
     const maxPeople = tour.maxPeople;
     if (bookings.length) {
@@ -90,13 +92,12 @@ function Tour(props) {
       for (let i = 0; i < remainingSpots; i++) {
         arr.push(i + 1);
       }
-    }
-    else {
+    } else {
       for (let i = 0; i < maxPeople; i++) {
         arr.push(i + 1);
       }
     }
-    return arr
+    return arr;
   }
 
   const imageUrl = tour.tourPicture;
@@ -178,12 +179,18 @@ function Tour(props) {
                   <i class="fas fa-calendar-day"></i>
                   <p>{newDate}</p>
                 </div>
+                <div className>
+                  Spots left: {remainingSpots[remainingSpots.length - 1]} /
+                  {tour.maxPeople}
+                </div>
                 <form>
                   <i class="fas fa-user"></i>
                   <select name="participants" onChange={handleChange}>
-                    {remainingSpots.length ? remainingSpots.map((spot, i) => (
-                      <option key={i}>{spot}</option>
-                    )) : ""}
+                    {remainingSpots.length
+                      ? remainingSpots.map((spot, i) => (
+                          <option key={i}>{spot}</option>
+                        ))
+                      : ""}
                   </select>
                   <button className="btn-cart" onClick={addToCart}>
                     Add to cart
