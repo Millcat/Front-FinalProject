@@ -7,6 +7,7 @@ h1 {
   flex-direction: column;
   align-items: center;
   margin-top: 50px;
+  text-align: center;
 }
 
 .shopcart {
@@ -16,6 +17,11 @@ h1 {
 .shopcart th,
 td {
   padding: 5px 30px;
+}
+
+.shopcart th {
+  font-size: 16px;
+  background: #f7f7f7;
 }
 
 .btn-submit {
@@ -30,9 +36,18 @@ td {
   font-style: italic;
 }
 
+.body-table tr {
+  border: 1px solid;
+}
+
 .total-order {
   margin-top: 30px;
   border: 2px solid grey;
   padding: 5px 10px;
   font-weight: bold;
+}
+
+.tours-booked {
+  color: #494d72;
+  font-size: 25px;
 }

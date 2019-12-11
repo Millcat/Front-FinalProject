@@ -5,7 +5,7 @@ import "../css/shopCart.css";
 
 const ShopCart = () => {
   const [tours, setTours] = useState([]);
-  // const [message, setMessage] = useState(false); //see EditTours
+  const [message, setMessage] = useState(false); //see EditTours
 
   useEffect(() => {
     const dataFromLS = JSON.parse(localStorage.getItem("cart")) || [];
@@ -15,7 +15,6 @@ const ShopCart = () => {
 
   console.log(tours);
 
-  // Logique à ajouter au ShopCart lors de la validation du panier pour add booking en bdd
   const handleSubmit = e => {
     e.preventDefault();
 
@@ -25,21 +24,24 @@ const ShopCart = () => {
       .post(process.env.REACT_APP_BACKEND_URL + "/booking", tours) // Envoyer les datas ici
       .then(res => {
         console.log("Faire un redirect ici ou autre pour paiement");
-        // setMessage(!message);
+        setMessage(!message);
       })
       .catch(err => {
         console.log(err);
       });
 
-    // use localStorage.clear() quand on cliquera sur "Validate the booking"
-    console.log("form submitted !");
+    // use localStorage.clear() quand on cliquera sur "Validate"
+    localStorage.removeItem("cart");
+    // console.log("form submitted !");
   };
 
-  const handleRemove = e => {
+  const handleRemove = (e, index) => {
     e.preventDefault();
 
-    // use localStorage.removeItem("cart") si on veut delete un tour dans la shopCart ==> créé fonction handleDelete
-    console.log("tour removed from you shopcart !");
+    const updatedTours = tours.filter((tour, i) => i !== index);
+    setTours(updatedTours);
+    localStorage.setItem("cart", JSON.stringify(updatedTours));
+    // console.log("tour removed from you shopcart ! index: " + index);
   };
 
   return (
@@ -57,22 +59,20 @@ const ShopCart = () => {
               <th>Delete</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody className="body-table">
             {tours.map((tour, i) => (
               <tr key={i}>
                 <td>{tour.tourName}</td>
                 <td>{moment(tour.date).format("[The] Do [of] MMMM, YYYY")}</td>
                 <td>{tour.participants}</td>
                 <td>{tour.price}</td>
-                <td>{tour.totalPricePerTour}</td>
+                <td>{tour.price * tour.participants}</td>
                 <td>
                   <i
                     className="fa fa-window-close"
                     aria-hidden="true"
-                    onClick={handleRemove}
+                    onClick={e => handleRemove(e, i)}
                   ></i>
-                  {/* ADD THIS PROPS TO REMOVE THE TOUR onClick={e => handleDelete(tour._id)}
-                    AND USE localStorage.removeItem("tour._id") by its ._id or its position */}
                 </td>
               </tr>
             ))}
@@ -84,17 +84,17 @@ const ShopCart = () => {
         )}
 
         <div className="total-order">
-          Total of your order:
+          Total of your cart:
           <span>
-            {tours.reduce((acc, tour) => {
+            {/* {tours.reduce((acc, tour) => {
               return acc + tour;
-            }, 0)}
+            }, 0)} */}
           </span>
           €
         </div>
 
-        <button className="btn-submit">Proceed to payment</button>
-        {/* {message && <p>Booking validated !</p>} */}
+        <button className="btn-submit">Validate</button>
+        {message && <p className="tours-booked">Your tours are booked !</p>}
       </form>
     </div>
   );
