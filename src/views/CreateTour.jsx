@@ -1,17 +1,17 @@
-import { useEffect } from 'react'
 import React, { useState } from "react";
 import axios from "axios";
 import Form from "react-bootstrap/Form";
 import "../css/tourForm.css";
 import Autocomplete from "../components/Autocomplete";
 import { NavLink } from "react-router-dom";
+import Button from "react-bootstrap/Button";
 
 // import CalendarForm from "../components/CalendarForm"
 
 const CreateTour = props => {
   const [formTour, setFormTour] = useState({});
   const [message, setMessage] = useState(false);
-
+  const [tour, setTour] = useState({})
   // Change of all the inputs except calendar
   function handleChange(e) {
     const key = e.target.name;
@@ -47,23 +47,20 @@ const CreateTour = props => {
       .catch(err => {
         console.log(err);
       });
-
-
-    // Quan je créé le tour je veux :
-    // Envoyer le Tour ID dans BDD UserId
-    // Envoyer le UserID dans la BDD TourId
-
-    // const userId = props.match.params.id
-    // const tourId = props.match.params.id
-    // axios.post(process.env.REACT_APP_BACKEND_URL + "/user/" + userId, tourId)
-    //   .then(res => {
-    //     console.log(res)
-    //   })
-    //   .catch(err => {
-    //     console.log(err)
-    //   })
   };
 
+  const tourId = (id) => {
+    axios
+      .get(process.env.REACT_APP_BACKEND_URL + "/tours/" + id)
+      .then(res => {
+        setTour(res.data.id);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }
+
+  console.log(tourId)
 
   return (
     <div
@@ -81,7 +78,6 @@ const CreateTour = props => {
             value={formTour.name}
             placeholder="John Doe"
             name="name"
-            required
           />
         </Form.Group>
         <Form.Group controlId="exampleForm.ControlFile1">
@@ -138,7 +134,6 @@ const CreateTour = props => {
             value={formTour.thematics}
             as="select"
             name="thematics"
-            required
           >
             <option value="">Choose a thematic</option>
             <option>Food</option>
@@ -179,16 +174,19 @@ const CreateTour = props => {
             name="description"
             value={formTour.description}
             placeholder="Discover Paris off the beaten track"
-            required
           />
         </Form.Group>
         <div className="container-links">
-          <button className="btn">Submit</button>
+          <Button className="btn-create" type="submit">Create tour</Button>
           {message && <p>The experience has been created succesfully !</p>}
-          {/* <NavLink to={"/tours/:id"}>See my experience</NavLink> */}
-          <NavLink className="links" to={"/manage-tour/"}>
-            <i className="fas fa-chevron-right"></i>See my list of experiences
+          <div className="div-links">
+            <NavLink className="links" to={"/tours/" + tourId}>
+              <i className="fas fa-chevron-right"></i>Go check my experience
           </NavLink>
+            <NavLink className="links" to={"/manage-tour/"}>
+              <i className="fas fa-chevron-right"></i>See my list of experiences
+          </NavLink>
+          </div>
         </div>
       </Form>
     </div>

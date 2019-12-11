@@ -33,6 +33,7 @@ const ManageTour = props => {
       });
   };
 
+
   // const handleSelectedTour = tour => {
   //   setSelectedTour({ ...tour });
   // };
