@@ -44,11 +44,11 @@ function SignUp(props) {
         <Form.Row className="col2">
           <Form.Group className="label-input">
             <Form.Label className="label">Username:</Form.Label>
-            <Form.Control type="text" placeholder="Enter email" name="username" />
+            <Form.Control type="text" placeholder="John Doe" name="username" />
           </Form.Group>
           <Form.Group className="label-input" >
             <Form.Label className="label">Email:</Form.Label>
-            <Form.Control type="email" placeholder="Password" />
+            <Form.Control type="email" placeholder="address@email.com" />
           </Form.Group>
         </Form.Row>
 
