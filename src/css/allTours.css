@@ -1,26 +1,27 @@
 /* quelle police utiliser ? see avec helene */
-.all-tours h1{
-    text-align: center;
+.all-tours h1 {
+  text-align: center;
 }
 
 .filters {
-    text-align: center;
+  text-align: center;
 }
 
-.filters-list{
-    display: flex;
-    justify-content: center;
+.filters-list {
+  display: flex;
+  justify-content: center;
 }
 
 .filter {
-    padding: 10px 10px;
+  padding: 10px 10px;
+  cursor: pointer;
 }
 
 .filter:hover {
-    background: rgb(165, 191, 238);
-    /* transition:  */
+  background: rgb(165, 191, 238);
+  /* transition:  */
 }
 
 .filter.isSelected {
-    background: rgb(103, 115, 138);
+  background: rgb(103, 115, 138);
 }

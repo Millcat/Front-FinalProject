@@ -39,6 +39,7 @@ const NavMain = () => {
           </NavLink>
           <NavLink to="/shopcart" className="nav-link">
             <i className="fas fa-shopping-cart"></i>
+            <span id="nbOfToursInCart"></span>
           </NavLink>
         </div>
       </div>

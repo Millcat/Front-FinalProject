@@ -8,8 +8,8 @@ import Rating from "../components/Rating";
 function Tour(props) {
   const [tour, setTour] = useState({});
   const [selectChoices, setSelectChoices] = useState(null); // To chose date and number of participants
-  // const [cartStatus, setCardStatus] = useState(null);
-
+  const localStorageCart = JSON.parse(localStorage.getItem("cart")) || [];
+  const [cart, setCart] = useState(localStorageCart); // à mettre dans Tour.jsx ou dans App.js ?
   // Récupérer les datas du Tour pour les afficher ==> OK mais pas le tourId !
   useEffect(() => {
     const tourId = props.match.params.id;
@@ -17,7 +17,7 @@ function Tour(props) {
       .get(process.env.REACT_APP_BACKEND_URL + "/tours/" + tourId)
       .then(res => {
         setTour(res.data);
-        console.log(res.data);
+        // console.log(res.data);
       })
       .catch(err => {
         console.log(err);
@@ -29,28 +29,35 @@ function Tour(props) {
     setSelectChoices({ ...selectChoices, [e.target.name]: e.target.value }); // ajouter le calendar
   };
 
-  const handleDateChange = date => {
-    setSelectChoices({ ...selectChoices, date: date._d });
-  };
+  // @helene => sert à quoi ? ne sert plus maintenant qu'on a qu'une seule date
+  // const handleDateChange = date => {
+  //   setSelectChoices({ ...selectChoices, date: date._d });
+  // };
 
   // Ajouter le booking au panier
   const addToCart = e => {
     e.preventDefault();
-    const participants = selectChoices.participants;
-    const date = selectChoices.date;
-    axios
-      .post(process.env.REACT_APP_BACKEND_URL + "/booking", {
-        tour,
-        participants,
-        date
-      })
-      .then(res => {
-        console.log(res);
-      })
-      .catch(err => {
-        console.log(err);
-      });
+    const updatedCart = [
+      ...cart,
+      {
+        tourId: tour._id,
+        price: tour.price,
+        tourName: tour.name,
+        participants: selectChoices ? selectChoices.participants : 1,
+        date: tour.date // careful à notre nouveau modele
+        // add user._id quand le login marchera
+      }
+    ];
+
+    setCart(updatedCart);
+    localStorage.setItem("cart", JSON.stringify(updatedCart));
+
+    // update the number of tours in the shopCart
+    // not the "React way" to do this but it's working...
+    document.getElementById("nbOfToursInCart").innerHTML = updatedCart.length;
   };
+
+  console.log(cart.length);
 
   // Afficher le nbre de places restantes en fonction de la date sélectionnée
   function getRemainingSpots() {
@@ -70,7 +77,7 @@ function Tour(props) {
 
   const newDate = moment(tour.date).format("[The] Do [of] MMMM, YYYY");
 
-  console.log(newDate);
+  // console.log(newDate);
 
   if (Object.keys(tour).length === 0) return <div>No Spots left</div>;
   return (
@@ -132,29 +139,26 @@ function Tour(props) {
               </div>
               <div className="aside-infos">
                 <div>
-                  <i class="fas fa-check"></i>
+                  <i className="fas fa-check"></i>
                   <span>Instant confirmation</span>
                 </div>
                 <div>
-                  <i class="fas fa-check"></i>
+                  <i className="fas fa-check"></i>
                   <span>Cancel up to 3 days</span>
                 </div>
                 <div>
-                  <i class="fas fa-check"></i>
+                  <i className="fas fa-check"></i>
                   <span>Best Price Guarantee</span>
                 </div>
               </div>
               <div className="form-elements">
                 <div className="date">
-                  <i class="fas fa-calendar-day"></i>
+                  <i className="fas fa-calendar-day"></i>
                   <p>{newDate}</p>
                 </div>
                 <form>
-                  <i class="fas fa-user"></i>
+                  <i className="fas fa-user"></i>
                   <select name="participants" onChange={handleChange}>
-                    <option id="option-select" value="-1">
-                      Participants
-                    </option>
                     {getRemainingSpots().map((spot, i) => (
                       <option key={i}>{spot}</option>
                     ))}
