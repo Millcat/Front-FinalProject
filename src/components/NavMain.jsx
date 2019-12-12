@@ -26,7 +26,7 @@ const NavMain = withRouter((props) => {
     <Navbar expand="lg" className="nav">
       <div className="container-nav">
         <div className="container-nav-left">
-          <img src="../logo-paris.png" id="logo-paris" alt="logo-paris" />
+          <img src="../paris-logo-bleu.png" className="paris-logo-bleu" alt=" logo-paris" />
           <Navbar id="basic-navbar-nav">
             <Nav className="mr-auto">
               <NavLink exact to="/" className="nav-link">

@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import handler from "../api/handler"
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import Col from "react-bootstrap/Button";
 import "../index.css"
 import { Link } from "react-router-dom";
 

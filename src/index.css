@@ -1,24 +1,23 @@
 @import url('https://fonts.googleapis.com/css?family=Architects+Daughter|Caveat|Kalam|Kaushan+Script|Marck+Script|Shadows+Into+Light&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Varela+Round&display=swap');
 /*Bleu: 4d80e4*/
 /*Rose: #fe4e6e*/
 
 * {
   margin: 0;
   padding: 0;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Varela Round', sans-serif;
+
 }
 
 /* NavBar */
 
-
-#logo-paris {
-  height: 50px;
-  padding: 0 16px;
-}
-
 .nav {
   padding: 0 !important;
+  color: white;
+  background: black;
+  padding-top: 10px;
 }
 
 .dropdown, .dropdow-item {
@@ -27,23 +26,23 @@
 }
 
 .dropdown-item.active {
-  background: #fe4e6e !important;
+  background: #3f7ac0 !important;
 }
 
 .dropdown-item:hover{
-  background: #fe4e6e !important;
+  background: #3f7ac0!important;
 }
 
 
 .nav-link {
-  color: rgb(43, 39, 39) !important;
+  color: white!important;
   text-decoration: none;
   padding-top: 0 !important;
   padding-bottom: 0 !important;
 }
 
 #basic-navbar-nav {
-  padding: 8px 0 0 0;
+  padding: 15px 0 0 0;
 }
 
 .container-nav {
@@ -53,6 +52,7 @@
   width: 100%;
   align-items: center;
   padding-bottom: 10px;
+  padding-top: 5px;
 }
 
 .container-nav-right {
@@ -104,7 +104,7 @@
 
 /*Button*/
 .btn {
-  background: #fe4e6e !important;
+  background: #3f7ac0 !important;
   color: white !important;
   border: none !important;
   padding: 5px 10px;
@@ -126,19 +126,28 @@ cursor: pointer;
 .footer {
   display: flex;
   flex-direction: row;
-  justify-content: center;
-  padding: 30px;
-  height: 300px;
+  justify-content: space-between;
+  padding: 30px 100px;
+  align-items: center;
+  height: 100px;
   border-top: 1.5px solid #ddd;
+  background: #191919
 }
 
-.container-footer {
-  display: flex;
-  flex-direction: column;
-  padding: 0 15px;
+.fab {
+  color: white;
 }
 
-.container-footer > p {
-  margin: 0 !important;
+.paris-logo-bleu {
+  height: 50px;
+  padding: 0 16px;
+  position: relative;
+  top : 2px;
 }
+
+.social-icons {
+  padding-top: 10px;
+  font-size: 1.3rem;
+}
+
 

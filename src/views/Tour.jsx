@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import "../css/tour.css";
 import moment from "moment";
+import Button from "react-bootstrap/Button";
 
 function Tour(props) {
   const [tour, setTour] = useState({});
@@ -106,100 +107,97 @@ function Tour(props) {
   if (Object.keys(tour).length === 0) return <div>No Spots left</div>;
   return (
     <div>
-      <header
-        className="header overlay"
-        style={{ backgroundImage: `url(${imageUrl})` }}
-      >
-        <h1 id="tour-name">{tour.name}</h1>
+      <header className="header overlay" style={{ backgroundImage: `url(${imageUrl})` }}>
+        <div className="overlay">
+          <h1 id="tour-name">{tour.name}</h1>
+        </div>
       </header>
-      <div className="container-all-content">
-        <main className="main">
-          <div className="all-sections">
-            <section id="main-infos">
-              <h5>TOUR OVERVIEW</h5>
-              <div className="containers-overview">
-                <div className="container-overview">
-                  <div>
-                    <p>Price per person:</p>
-                    <p>{tour.price}€</p>
-                  </div>
-                  <div>
-                    <p>Maximum Number of People: </p>
-                    <p>{tour.maxPeople}€</p>
-                  </div>
-                </div>
-                <div className="container-overview">
-                  <div>
-                    <p>Language(s):</p>
-                    <p>{tour.languages}</p>
-                  </div>
-                  <div>
-                    <p>Tour duration:</p>
-                    <p>{tour.duration} hours</p>
-                  </div>
-                </div>
-              </div>
-            </section>
-            <section id="guide-card">
-              <h5>YOUR GUIDE</h5>
-              {/* <p>{tour.guide.username}</p>
-                            <p>{tour.guide.age}</p>
-                            <p>{tour.guide.description}</p> */}
-            </section>
-            <section id="meeting-location">
-              <h5>MEETING LOCATION</h5>
-              <p>Tour meeting location: {tour.meetingLocation}</p>
-            </section>
-            <section id="description">
-              <h5>TOUR OVERVIEW</h5>
-              <p>Tour description: {tour.description}</p>
-            </section>
-          </div>
-          <aside>
-            <div className="container-aside">
-              <div className="h2-title">
-                <h2>BOOKING</h2>
-              </div>
-              <div className="aside-infos">
+      <div className="main">
+        <div className="all-sections">
+          <section id="main-infos">
+            <h5>TOUR OVERVIEW</h5>
+            <div className="containers-overview">
+              <div className="container-overview">
                 <div>
-                  <i class="fas fa-check"></i>
-                  <span>Instant confirmation</span>
+                  <p><i class="fas fa-euro-sign"></i> Price per person:</p>
+                  <p>{tour.price}€</p>
                 </div>
                 <div>
-                  <i class="fas fa-check"></i>
-                  <span>Cancel up to 3 days</span>
-                </div>
-                <div>
-                  <i class="fas fa-check"></i>
-                  <span>Best Price Guarantee</span>
+                  <p><i class="fas fa-users"></i> Maximum Number of People: </p>
+                  <p>{tour.maxPeople}€</p>
                 </div>
               </div>
-              <div className="form-elements">
-                <div className="date">
-                  <i class="fas fa-calendar-day"></i>
-                  <p>{newDate}</p>
+              <div className="container-overview">
+                <div>
+                  <p><i class="fas fa-globe-asia"></i>Language(s):</p>
+                  <p>{tour.languages}</p>
                 </div>
-                <div className>
-                  Spots left: {remainingSpots[remainingSpots.length - 1]} /
-                  {tour.maxPeople}
+                <div>
+                  <p><i class="far fa-clock"></i>Tour duration:</p>
+                  <p>{tour.duration} hours</p>
                 </div>
-                <form>
-                  <i class="fas fa-user"></i>
-                  <select name="participants" onChange={handleChange}>
-                    {remainingSpots.length
-                      ? remainingSpots.map((spot, i) => (
-                          <option key={i}>{spot}</option>
-                        ))
-                      : ""}
-                  </select>
-                  <button className="btn-cart" onClick={addToCart}>
-                    Add to cart
-                  </button>
-                </form>
               </div>
             </div>
-          </aside>
-        </main>
+          </section>
+          <section id="guide-card">
+            <h5>YOUR GUIDE <i class="fas fa-user"></i></h5>
+            {/* <p>{tour.guide.username}</p>
+            <p>{tour.guide.age}</p>
+            <p>{tour.guide.description}</p> */}
+          </section>
+          <section id="meeting-location">
+            <h5>MEETING LOCATION <i class="fas fa-map-marker-alt"></i></h5>
+            <p>{tour.meetingLocation}</p>
+          </section>
+          <section id="description">
+            <h5>YOUR PROGRAM <i class="fas fa-binoculars"></i></h5>
+            <p>{tour.description}</p>
+          </section>
+        </div>
+
+        <aside>
+          <div className="h2-title">
+            <h2>BOOKING</h2>
+          </div>
+          <div className="main-aside">
+            <div className="container-conditions">
+              <div>
+                <i class="fas fa-check"></i>
+                <span>Instant confirmation</span>
+              </div>
+              <div>
+                <i class="fas fa-check"></i>
+                <span>Cancel up to 3 days</span>
+              </div>
+              <div>
+                <i class="fas fa-check"></i>
+                <span>Customer service 24/7</span>
+              </div>
+            </div>
+            <div className="date">
+              <i class="fas fa-calendar-day"></i>
+              <p>{newDate}</p>
+            </div>
+            <form className="form-participants">
+              <div className="container-participants">
+                <i class="fas fa-user"></i>
+                <label>Select participants: </label>
+                <select placeholder="select" name="participants" onChange={handleChange}>
+                  {remainingSpots.length
+                    ? remainingSpots.map((spot, i) => (
+                      <option key={i}>{spot}</option>
+                    ))
+                    : ""}
+                </select>
+              </div>
+            </form>
+            <div className="container-btn">
+              {remainingSpots.length < 10 ?
+                <span id="spots-left">Only {remainingSpots[remainingSpots.length - 1]} spots left!</span> : <span></span>}
+              <Button className="btn-cart" onClick={addToCart}>Add to cart</Button>
+            </div>
+          </div>
+        </aside>
       </div>
     </div>
   );
