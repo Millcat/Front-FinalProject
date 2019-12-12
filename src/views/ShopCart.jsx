@@ -23,7 +23,6 @@ const ShopCart = () => {
     axios
       .post(process.env.REACT_APP_BACKEND_URL + "/booking", tours) // Envoyer les datas ici
       .then(res => {
-        console.log("Faire un redirect ici ou autre pour paiement");
         setMessage(!message);
       })
       .catch(err => {

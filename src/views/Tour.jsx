@@ -1,9 +1,10 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import "../css/tour.css";
 import moment from "moment";
 import Button from "react-bootstrap/Button";
+import UserContext from "./../auth/UserContext";
 
 function Tour(props) {
   const [tour, setTour] = useState({});
@@ -12,6 +13,10 @@ function Tour(props) {
   const localStorageCart = JSON.parse(localStorage.getItem("cart")) || [];
   const [cart, setCart] = useState(localStorageCart);
   const [remainingSpots, setRemainingSpots] = useState([]);
+  const userContext = useContext(UserContext);
+  const { setCurrentUser, currentUser } = userContext;
+
+  console.log(currentUser);
 
   useEffect(() => {
     const tourId = props.match.params.id;
@@ -33,7 +38,7 @@ function Tour(props) {
     axios
       .get(process.env.REACT_APP_BACKEND_URL + "/booking")
       .then(res => {
-        console.log("res booking", res);
+        // console.log("res booking", res);
         setBookings(res.data.filter(b => b.tour === tourId));
       })
       .catch(err => {
@@ -61,8 +66,8 @@ function Tour(props) {
         tourName: tour.name,
         participants: selectChoices ? Number(selectChoices.participants) : 1,
         totalPricePerTour: tour.price * Number(selectChoices.participants),
-        date: tour.date
-        // buyers: user._id, // session en cours
+        date: tour.date,
+        buyer: currentUser._id // id du user de la session en cours
       }
     ];
 
@@ -73,16 +78,13 @@ function Tour(props) {
     // not the "React way" to do this but it's working...
     document.getElementById("nbOfToursInCart").innerHTML = updatedCart.length;
 
-    console.log(updatedCart.length);
-    console.log("nb participants: " + tour.participants);
-    console.log("price/pers: " + tour.price);
-    console.log("totalPricePerTour: " + tour.totalPricePerTour);
+    // console.log(updatedCart.length);
   };
 
   // Afficher le nbre de places restantes pour un tour
   function getRemainingSpots() {
-    console.log("tour", tour);
-    console.log("bookins", bookings);
+    // console.log("tour", tour);
+    // console.log("bookins", bookings);
     const arr = [];
     const maxPeople = tour.maxPeople;
     if (bookings.length) {
@@ -107,7 +109,10 @@ function Tour(props) {
   if (Object.keys(tour).length === 0) return <div>No Spots left</div>;
   return (
     <div>
-      <header className="header overlay" style={{ backgroundImage: `url(${imageUrl})` }}>
+      <header
+        className="header overlay"
+        style={{ backgroundImage: `url(${imageUrl})` }}
+      >
         <div className="overlay">
           <h1 id="tour-name">{tour.name}</h1>
         </div>
@@ -119,38 +124,52 @@ function Tour(props) {
             <div className="containers-overview">
               <div className="container-overview">
                 <div>
-                  <p><i class="fas fa-euro-sign"></i> Price per person:</p>
+                  <p>
+                    <i class="fas fa-euro-sign"></i> Price per person:
+                  </p>
                   <p>{tour.price}€</p>
                 </div>
                 <div>
-                  <p><i class="fas fa-users"></i> Maximum Number of People: </p>
+                  <p>
+                    <i class="fas fa-users"></i> Maximum Number of People:{" "}
+                  </p>
                   <p>{tour.maxPeople}€</p>
                 </div>
               </div>
               <div className="container-overview">
                 <div>
-                  <p><i class="fas fa-globe-asia"></i>Language(s):</p>
+                  <p>
+                    <i class="fas fa-globe-asia"></i>Language(s):
+                  </p>
                   <p>{tour.languages}</p>
                 </div>
                 <div>
-                  <p><i class="far fa-clock"></i>Tour duration:</p>
+                  <p>
+                    <i class="far fa-clock"></i>Tour duration:
+                  </p>
                   <p>{tour.duration} hours</p>
                 </div>
               </div>
             </div>
           </section>
           <section id="guide-card">
-            <h5>YOUR GUIDE <i class="fas fa-user"></i></h5>
+            <h5>
+              YOUR GUIDE <i class="fas fa-user"></i>
+            </h5>
             {/* <p>{tour.guide.username}</p>
             <p>{tour.guide.age}</p>
             <p>{tour.guide.description}</p> */}
           </section>
           <section id="meeting-location">
-            <h5>MEETING LOCATION <i class="fas fa-map-marker-alt"></i></h5>
+            <h5>
+              MEETING LOCATION <i class="fas fa-map-marker-alt"></i>
+            </h5>
             <p>{tour.meetingLocation}</p>
           </section>
           <section id="description">
-            <h5>YOUR PROGRAM <i class="fas fa-binoculars"></i></h5>
+            <h5>
+              YOUR PROGRAM <i class="fas fa-binoculars"></i>
+            </h5>
             <p>{tour.description}</p>
           </section>
         </div>
@@ -182,19 +201,30 @@ function Tour(props) {
               <div className="container-participants">
                 <i class="fas fa-user"></i>
                 <label>Select participants: </label>
-                <select placeholder="select" name="participants" onChange={handleChange}>
+                <select
+                  placeholder="select"
+                  name="participants"
+                  onChange={handleChange}
+                >
                   {remainingSpots.length
                     ? remainingSpots.map((spot, i) => (
-                      <option key={i}>{spot}</option>
-                    ))
+                        <option key={i}>{spot}</option>
+                      ))
                     : ""}
                 </select>
               </div>
             </form>
             <div className="container-btn">
-              {remainingSpots.length < 10 ?
-                <span id="spots-left">Only {remainingSpots[remainingSpots.length - 1]} spots left!</span> : <span></span>}
-              <Button className="btn-cart" onClick={addToCart}>Add to cart</Button>
+              {remainingSpots.length < 10 ? (
+                <span id="spots-left">
+                  Only {remainingSpots[remainingSpots.length - 1]} spots left!
+                </span>
+              ) : (
+                <span></span>
+              )}
+              <Button className="btn-cart" onClick={addToCart}>
+                Add to cart
+              </Button>
             </div>
           </div>
         </aside>
