@@ -57,7 +57,9 @@ function Tour(props) {
     e.preventDefault();
 
     if (currentUser == null) {
-      return <SignIn />;
+      console.log("no booking added in LS");
+      console.log("props of Tours.jsx ==> ", props);
+      props.history.push("/sign-in"); // instead of => return <SignIn />
     } else {
       const updatedCart = [
         ...cart,
