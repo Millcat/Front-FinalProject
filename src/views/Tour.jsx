@@ -5,6 +5,7 @@ import "../css/tour.css";
 import moment from "moment";
 import Button from "react-bootstrap/Button";
 import UserContext from "./../auth/UserContext";
+import SignIn from "./SignIn";
 
 function Tour(props) {
   const [tour, setTour] = useState({});
@@ -21,7 +22,7 @@ function Tour(props) {
     axios
       .get(process.env.REACT_APP_BACKEND_URL + "/tours/" + tourId)
       .then(res => {
-        console.log("res", res);
+        // console.log("res", res);
         setTour(res.data);
       })
       .catch(err => {
@@ -54,27 +55,30 @@ function Tour(props) {
   // Ajouter le booking au panier
   const addToCart = e => {
     e.preventDefault();
-    const updatedCart = [
-      ...cart,
-      {
-        tourId: tour._id,
-        price: tour.price,
-        tourName: tour.name,
-        participants: selectChoices ? Number(selectChoices.participants) : 1,
-        totalPricePerTour: tour.price * Number(selectChoices.participants),
-        date: tour.date,
-        buyer: currentUser._id // id du user de la session en cours
-      }
-    ];
 
-    setCart(updatedCart);
-    localStorage.setItem("cart", JSON.stringify(updatedCart));
+    if (currentUser == null) {
+      return <SignIn />;
+    } else {
+      const updatedCart = [
+        ...cart,
+        {
+          tourId: tour._id,
+          price: tour.price,
+          tourName: tour.name,
+          participants: selectChoices ? Number(selectChoices.participants) : 1,
+          totalPricePerTour: tour.price * Number(selectChoices.participants),
+          date: tour.date,
+          buyer: currentUser._id // id du user de la session en cours
+        }
+      ];
 
-    // update the number of tours added to the shopCart
-    // not the "React way" to do this but it's working...
-    document.getElementById("nbOfToursInCart").innerHTML = updatedCart.length;
+      setCart(updatedCart);
+      localStorage.setItem("cart", JSON.stringify(updatedCart));
 
-    // console.log(updatedCart.length);
+      // update the number of tours added to the shopCart
+      // not the "React way" to do this but it's working...
+      document.getElementById("nbOfToursInCart").innerHTML = updatedCart.length;
+    }
   };
 
   // Afficher le nbre de places restantes pour un tour
@@ -102,7 +106,7 @@ function Tour(props) {
   const imageUrl = tour.tourPicture;
   const newDate = moment(tour.date).format("[The] Do [of] MMMM, YYYY");
 
-  console.log(tour)
+  console.log(tour);
 
   if (Object.keys(tour).length === 0) return <div>No Spots left</div>;
   return (
@@ -207,8 +211,8 @@ function Tour(props) {
                 >
                   {remainingSpots.length
                     ? remainingSpots.map((spot, i) => (
-                      <option key={i}>{spot}</option>
-                    ))
+                        <option key={i}>{spot}</option>
+                      ))
                     : ""}
                 </select>
               </div>
@@ -219,8 +223,8 @@ function Tour(props) {
                   Only {remainingSpots[remainingSpots.length - 1]} spots left!
                 </span>
               ) : (
-                  <span></span>
-                )}
+                <span></span>
+              )}
               <Button className="btn-cart" onClick={addToCart}>
                 Add to cart
               </Button>
