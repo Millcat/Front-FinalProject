@@ -140,6 +140,11 @@
   padding: 0 16px;
   position: relative;
   top: 2px;
+  /* @media (max-width: 450px) {
+    height: 25px;
+    position: relative;
+    left: 50px;
+  } */
 }
 
 .social-icons {
@@ -147,8 +152,8 @@
   font-size: 1.3rem;
 }
 
-#nbOfToursInCart {
-  background-color: #fe4e6e;
+#nbOfToursInCart:not(:empty) {
+  background-color: #3f7ac0;
   color: white;
   border-radius: 50px;
   padding: 0px 5px;

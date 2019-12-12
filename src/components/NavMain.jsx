@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { withRouter } from "react-router-dom"
+import { withRouter } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
@@ -8,16 +8,15 @@ import { useAuth } from "../auth/useAuth";
 import handler from "./../api/handler";
 import UserContext from "../auth/UserContext";
 
-const NavMain = withRouter((props) => {
+const NavMain = withRouter(props => {
   const userContext = useContext(UserContext);
   const { setCurrentUser, currentUser } = userContext;
   const { isLoading, isLoggedIn } = useAuth();
 
-
   const handleSignout = () =>
     handler.post("/logout").finally(() => {
       setCurrentUser(null);
-      props.history.push("/sign-in")
+      props.history.push("/sign-in");
     });
 
   if (isLoading) return null;
@@ -26,7 +25,11 @@ const NavMain = withRouter((props) => {
     <Navbar expand="lg" className="nav">
       <div className="container-nav">
         <div className="container-nav-left">
-          <img src="../paris-logo-bleu.png" className="paris-logo-bleu" alt=" logo-paris" />
+          <img
+            src="../paris-logo-bleu.png"
+            className="paris-logo-bleu"
+            alt=" logo-paris"
+          />
           <Navbar id="basic-navbar-nav">
             <Nav className="mr-auto">
               <NavLink exact to="/" className="nav-link">
@@ -48,16 +51,23 @@ const NavMain = withRouter((props) => {
               Edit an experience
             </NavLink>
           </NavDropdown>
-          {!currentUser ?
+          {!currentUser ? (
             <React.Fragment>
               <NavLink to="/sign-in" className="nav-link">
                 Sign In
-          </NavLink>
+              </NavLink>
               <NavLink to="/sign-up" className="nav-link">
-                Sign Up </NavLink>
-            </React.Fragment> : <NavLink to="#" onClick={handleSignout} className="nav-link">Log Out</NavLink>}
+                Sign Up{" "}
+              </NavLink>
+            </React.Fragment>
+          ) : (
+            <NavLink to="#" onClick={handleSignout} className="nav-link">
+              Log Out
+            </NavLink>
+          )}
           <NavLink to="/shopcart" className="nav-link">
             <i className="fas fa-shopping-cart"></i>
+            {}
             <span id="nbOfToursInCart"></span>
           </NavLink>
         </div>
