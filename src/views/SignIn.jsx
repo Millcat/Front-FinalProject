@@ -9,7 +9,7 @@ import "../css/auth.css"
 
 function SignIn(props) {
 
-  const [email, setEmail] = useState("anais@gmail.com");
+  const [email, setEmail] = useState("tata@email.com");
   const [password, setPassword] = useState("1234");
   const userContext = useContext(UserContext);
   const { setCurrentUser, currentUser } = userContext;

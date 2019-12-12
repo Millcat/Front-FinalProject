@@ -1,22 +1,26 @@
-.title {
-  font-size: 50px;
-}
 
-.description {
-  font-size: 30px;
+.title {
+  font-size: 4.5rem;
 }
 
 .title,
 .description {
   text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
   position: relative;
-  top: -180px;
-  left: 340px;
 }
 
-/* .title,
-.description, */
-.carousel-indicators {
-  bottom: 185px;
-  left: 680px;
+.carousel {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  position: relative;
+  margin-bottom: 30px;
+}
+
+
+.description {
+  color: white;
+  font-size: 2rem;
+  left: 5px;
 }

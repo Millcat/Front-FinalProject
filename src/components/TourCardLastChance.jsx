@@ -61,13 +61,13 @@ export default function TourCardLastChance() {
                 </ul>
               </div>
               <div className="tour-details">
-                <h3><a href="http://www.ongoingthemes.com/tripandguide/tours/santorini-islands-tour/">{tour.name}</a></h3>
+                <h3>{tour.name}</h3>
                 <p className="tour-duration"><span className="fa fa-clock-o"></span><i class="far fa-clock"></i>{tour.duration} hours</p>
                 <p className="tour-date"><span><i class="fas fa-calendar-day"></i>{moment(tour.date).format("[The] Do [of] MMMM")}s</span></p>
-                <p>Only {placesLeft(tour)} spots left!</p>
+                <p className="spots-left">Only {placesLeft(tour)} spots left!</p>
               </div>
             </div>
-            <div className="tour-booking">
+            <div className="tour-booking slide-fwd-center">
               <Link className="link-experience" to={"/tours/" + tour._id}>See experience</Link>
             </div>
           </div>
