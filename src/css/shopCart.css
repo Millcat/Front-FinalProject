@@ -22,7 +22,7 @@ td {
 
 .shopcart th {
   font-size: 16px;
-  background: #fe4e6e;
+  background: #3f7ac0;
   color: white;
 }
 
@@ -44,17 +44,17 @@ td {
 
 .total-order {
   margin-top: 30px;
-  border: 2px solid #fe4e6e;
+  border: 2px solid #3f7ac0;
   padding: 5px 10px;
   font-weight: bold;
 }
 
 .total-order span {
   margin: 0 5px;
-  color: #fe4e6e;
+  color: #3f7ac0;
 }
 
 .tours-booked {
-  color: #fe4e6e;
+  color: #3f7ac0;
   font-size: 25px;
 }

@@ -9,11 +9,11 @@ const ShopCart = () => {
 
   useEffect(() => {
     const dataFromLS = JSON.parse(localStorage.getItem("cart")) || [];
-    console.log(dataFromLS);
+    // console.log(dataFromLS);
     setTours(dataFromLS);
   }, []);
 
-  console.log(tours);
+  // console.log(tours);
 
   const handleSubmit = e => {
     e.preventDefault();
