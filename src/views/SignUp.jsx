@@ -47,7 +47,7 @@ function SignUp(props) {
           </Form.Group>
           <Form.Group className="label-input" >
             <Form.Label className="label">Email:</Form.Label>
-            <Form.Control type="email" placeholder="address@email.com" />
+            <Form.Control type="email" name="email" placeholder="address@email.com" />
           </Form.Group>
         </Form.Row>
 
