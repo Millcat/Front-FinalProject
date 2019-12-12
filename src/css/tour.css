@@ -99,6 +99,28 @@ aside {
     text-align-last:center;
 }
 
+.guide-details {
+    display: flex;
+    flex-direction: column;
+}
+
+.guide-card {
+    display: flex;
+    flex-direction: row;
+}
+
+
+.img-guide {
+    height: 250px;
+    overflow: hidden;
+    margin-right: 20px;
+}
+
+.img-guide > img {
+    width: 250px;
+    height: 350px;
+}
+
 .container-overview > i {
     margin-left: 10px;
 }
@@ -151,6 +173,10 @@ aside {
 
 
 /* MAIN CONTENT*/
+
+.meeting-location-time > p {
+    margin-bottom: 0 !important;
+}
 
 .fa-map-marker-alt, .fa-binoculars, .check, .fa-check, .fa-users, .fa-euro-sign, .fa-clock, .fa-globe-asia, .fa-user, .fa-clipboard-list {
     color: #3f7ac0;

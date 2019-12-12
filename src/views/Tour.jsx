@@ -160,18 +160,20 @@ function Tour(props) {
             <h5>
               YOUR GUIDE <i class="fas fa-user"></i>
             </h5>
-            <div style={{ backgroundImage: `url(${tour.guide.userPicure})}` }}>
-              <img src={tour.guide.userPicture}></img>
-            </div>
-            <div>
-              <p>{tour.guide.username}</p>
-              <p>{tour.guide.age}</p>
-              <p>{tour.guide.description}</p>
+            <div className="guide-card">
+              <div className="img-guide">
+                <img src={tour.guide.userPicture} />
+              </div>
+              <div className="guide-details">
+                <h4>{tour.guide.username}</h4>
+                <p>{tour.guide.age} years old</p>
+                <p>"{tour.guide.description}"</p>
+              </div>
             </div>
           </section>
-          <section id="meeting-location">
+          <section id="meeting-location-time">
             <h5>
-              MEETING LOCATION & TIME<i class="fas fa-map-marker-alt"></i>
+              MEETING LOCATION & TIME <i class="fas fa-map-marker-alt"></i>
             </h5>
             <p>{tour.meetingLocation}</p>
             <p>let's meet at{tour.time}</p>
@@ -237,7 +239,7 @@ function Tour(props) {
           </div>
         </aside>
       </div>
-    </div>
+    </div >
   );
 }
 
