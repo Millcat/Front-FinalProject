@@ -9,26 +9,34 @@ function TourCardPlus(props) {
       {props.tours.map((tour, i) => (
         <div className="tour-card-plus" key={i}>
           <img src={tour.tourPicture} alt="card-plus" />
+
           <div className="infos-tour">
             <h3>{tour.name}</h3>
-            <p className="thematics">{tour.thematics}</p>
-            <p>
-              <i className="fas fa-users"></i>
-              <span>{tour.maxPeople}</span> people
-            </p>
-            <p>
-              <i className="fas fa-comments"></i>
-              {tour.languages.map((language, i) => (
-                <span key={i}>{language} </span>
-              ))}
-            </p>
-            <p>
-              <i className="fas fa-coins"></i>
-              <span> {tour.price}</span> €
-            </p>
-            <Link to={"/tours/" + tour._id}>
-              <button className="btn">See tour</button>
-            </Link>
+
+            <div className="infos">
+              <p className="thematics">{tour.thematics}</p>
+
+              <div className="info-icons">
+                <p>
+                  <i className="fas fa-users"></i>
+                  <span>{tour.maxPeople}</span> people
+                </p>
+                <p>
+                  <i className="fas fa-comments"></i>
+                  {tour.languages.map((language, i) => (
+                    <span key={i}>{language} </span>
+                  ))}
+                </p>
+                <p>
+                  <i className="fas fa-coins"></i>
+                  <span> {tour.price}</span> €
+                </p>
+              </div>
+
+              <Link to={"/tours/" + tour._id}>
+                <button className="btn">See tour</button>
+              </Link>
+            </div>
           </div>
         </div>
       ))}
