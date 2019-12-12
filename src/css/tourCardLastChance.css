@@ -80,6 +80,11 @@ h3 > a {
     text-decoration: none;
 }
 
+.fa-star:hover .active:hover {
+  color: yellow;
+  background: yellow;
+}
+
 .container-tour-cards > h2 {
     text-align: center;
     font-size: 2.3rem;
@@ -99,7 +104,7 @@ h3 > a:hover {
     overflow: hidden;
     background-color: #fff;
     width: 262px;
-    height: 437px;
+    height: 467px;
     display: flex;
     flex-direction: column;
 }
@@ -113,6 +118,13 @@ h3 > a:hover {
 .container-img > img {
     max-width: 100%;
     height: 185px;
+}
+
+.spots-left {
+    display: flex;
+    justify-content: center;
+    color: red;
+      
 }
 
 .tour-card:hover {

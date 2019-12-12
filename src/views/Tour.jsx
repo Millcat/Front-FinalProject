@@ -16,8 +16,6 @@ function Tour(props) {
   const userContext = useContext(UserContext);
   const { setCurrentUser, currentUser } = userContext;
 
-  console.log(currentUser);
-
   useEffect(() => {
     const tourId = props.match.params.id;
     axios
@@ -25,8 +23,6 @@ function Tour(props) {
       .then(res => {
         console.log("res", res);
         setTour(res.data);
-        // console.log(res.data);
-        // setRemainingSpots(getRemainingSpots())
       })
       .catch(err => {
         console.log(err);
@@ -106,6 +102,8 @@ function Tour(props) {
   const imageUrl = tour.tourPicture;
   const newDate = moment(tour.date).format("[The] Do [of] MMMM, YYYY");
 
+  console.log(tour)
+
   if (Object.keys(tour).length === 0) return <div>No Spots left</div>;
   return (
     <div>
@@ -156,9 +154,10 @@ function Tour(props) {
             <h5>
               YOUR GUIDE <i class="fas fa-user"></i>
             </h5>
-            {/* <p>{tour.guide.username}</p>
+            {console.log("guide", tour.guide)}
+            <p>{tour.guide.username}</p>
             <p>{tour.guide.age}</p>
-            <p>{tour.guide.description}</p> */}
+            <p>{tour.guide.description}</p>
           </section>
           <section id="meeting-location">
             <h5>
@@ -208,8 +207,8 @@ function Tour(props) {
                 >
                   {remainingSpots.length
                     ? remainingSpots.map((spot, i) => (
-                        <option key={i}>{spot}</option>
-                      ))
+                      <option key={i}>{spot}</option>
+                    ))
                     : ""}
                 </select>
               </div>
@@ -220,8 +219,8 @@ function Tour(props) {
                   Only {remainingSpots[remainingSpots.length - 1]} spots left!
                 </span>
               ) : (
-                <span></span>
-              )}
+                  <span></span>
+                )}
               <Button className="btn-cart" onClick={addToCart}>
                 Add to cart
               </Button>

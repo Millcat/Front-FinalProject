@@ -11,7 +11,7 @@ import Button from "react-bootstrap/Button";
 const CreateTour = props => {
   const [formTour, setFormTour] = useState({});
   const [message, setMessage] = useState(false);
-  const [tour, setTour] = useState({})
+  const [tourID, setTourID] = useState({})
   // Change of all the inputs except calendar
   function handleChange(e) {
     const key = e.target.name;
@@ -25,6 +25,10 @@ const CreateTour = props => {
     } else {
       setFormTour({ ...formTour, [key]: value });
     }
+  }
+
+  function addressAutocomplete(info) {
+    setFormTour({ ...formTour, meetingLocation: info })
   }
 
   // const handleDatesChange = (startDate, endDate) => {
@@ -43,24 +47,25 @@ const CreateTour = props => {
       .post(process.env.REACT_APP_BACKEND_URL + "/tours", formData, { withCredentials: true }) // Envoyer les datas ici
       .then(res => {
         setMessage(!message);
+        setTourID(res.data._id)
       })
       .catch(err => {
         console.log(err);
       });
   };
 
-  const tourId = (id) => {
-    axios
-      .get(process.env.REACT_APP_BACKEND_URL + "/tours/" + id)
-      .then(res => {
-        setTour(res.data.id);
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  }
+  // const tourId = (id) => {
+  //   axios
+  //     .get(process.env.REACT_APP_BACKEND_URL + "/tours/" + id)
+  //     .then(res => {
+  //       setTour(res.data.id);
+  //     })
+  //     .catch(err => {
+  //       console.log(err);
+  //     });
+  // }
 
-  console.log(tourId)
+
 
   return (
     <div
@@ -126,7 +131,7 @@ const CreateTour = props => {
             placeholder="2"
           />
         </Form.Group>
-        <Autocomplete />
+        <Autocomplete onChange={addressAutocomplete} />
         <Form.Group controlId="exampleForm.ControlSelect1">
           <Form.Label>Thematic *</Form.Label>
           <Form.Control
@@ -180,7 +185,7 @@ const CreateTour = props => {
           <Button className="btn-create" type="submit">Create tour</Button>
           {message && <p>The experience has been created succesfully !</p>}
           <div className="div-links">
-            <NavLink className="links" to={"/tours/" + tourId}>
+            <NavLink className="links" to={"/tours/" + tourID}>
               <i className="fas fa-chevron-right"></i>Go check my experience
           </NavLink>
             <NavLink className="links" to={"/manage-tour/"}>

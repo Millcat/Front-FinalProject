@@ -1,6 +1,6 @@
 //restrict search to only addresses in Paris
 
-import React from "react";
+import React, { useEffect } from "react";
 import Form from "react-bootstrap/Form";
 import PlacesAutocomplete, {
   geocodeByAddress
@@ -8,13 +8,17 @@ import PlacesAutocomplete, {
 
 const google = window.google;
 
-export default function App() {
+export default function App(props) {
   const [address, setAddress] = React.useState("");
 
   const handleSelect = async value => {
     /*const results =*/ await geocodeByAddress(value);
     setAddress(value);
   };
+
+  useEffect(() => {
+    props.onChange(address)
+  }, [address])
 
   const searchOptions = {
     location: new google.maps.LatLng(48.8534033, 2.3465949), // coordonates Notre-Dame, Paris
