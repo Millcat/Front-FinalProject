@@ -13,13 +13,11 @@ function TourCardPlus(props) {
             <h3>{tour.name}</h3>
             <p className="thematics">{tour.thematics}</p>
             <p>
-              {" "}
               <i className="fas fa-users"></i>
               <span>{tour.maxPeople}</span> people
             </p>
             <p>
-              {" "}
-              <i className="fas fa-comments"></i>{" "}
+              <i className="fas fa-comments"></i>
               {tour.languages.map((language, i) => (
                 <span key={i}>{language} </span>
               ))}

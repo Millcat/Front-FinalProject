@@ -66,7 +66,7 @@ const ShopCart = () => {
                 <td>{moment(tour.date).format("[The] Do [of] MMMM, YYYY")}</td>
                 <td>{tour.participants}</td>
                 <td>{tour.price}</td>
-                <td>{tour.price * tour.participants}</td>
+                <td>{tour.totalPricePerTour}</td>
                 <td>
                   <i
                     className="fa fa-window-close"
@@ -86,14 +86,14 @@ const ShopCart = () => {
         <div className="total-order">
           Total of your cart:
           <span>
-            {/* {tours.reduce((acc, tour) => {
-              return acc + tour;
-            }, 0)} */}
+            {tours.reduce((acc, tour) => {
+              return acc + tour.totalPricePerTour;
+            }, 0)}
           </span>
           €
         </div>
 
-        <button className="btn-submit">Validate</button>
+        <button className="btn submit">Validate</button>
         {message && <p className="tours-booked">Your tours are booked !</p>}
       </form>
     </div>

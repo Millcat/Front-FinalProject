@@ -60,16 +60,16 @@ function Tour(props) {
         price: tour.price,
         tourName: tour.name,
         participants: selectChoices ? Number(selectChoices.participants) : 1,
-        // totalPricePerTour: tour.price * tour.participants,
-        date: tour.date // careful à notre nouveau modele
-        // add user._id quand le login marchera
+        totalPricePerTour: tour.price * Number(selectChoices.participants),
+        date: tour.date
+        // buyers: user._id, // session en cours
       }
     ];
 
     setCart(updatedCart);
     localStorage.setItem("cart", JSON.stringify(updatedCart));
 
-    // update the number of tours in the shopCart
+    // update the number of tours added to the shopCart
     // not the "React way" to do this but it's working...
     document.getElementById("nbOfToursInCart").innerHTML = updatedCart.length;
 

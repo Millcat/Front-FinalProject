@@ -11,22 +11,24 @@ h1 {
 }
 
 .shopcart {
-  border: 1px solid grey;
+  border: 1px solid;
+  border-radius: 10px;
 }
 
 .shopcart th,
 td {
-  padding: 5px 30px;
+  padding: 10px 30px;
 }
 
 .shopcart th {
   font-size: 16px;
-  background: #f7f7f7;
+  background: #fe4e6e;
+  color: white;
 }
 
-.btn-submit {
+.submit {
   margin: 30px auto;
-  padding: 10px 10px;
+  padding: 10px 15px;
 }
 
 .if-empty-cart {
@@ -42,12 +44,17 @@ td {
 
 .total-order {
   margin-top: 30px;
-  border: 2px solid grey;
+  border: 2px solid #fe4e6e;
   padding: 5px 10px;
   font-weight: bold;
 }
 
+.total-order span {
+  margin: 0 5px;
+  color: #fe4e6e;
+}
+
 .tours-booked {
-  color: #494d72;
+  color: #fe4e6e;
   font-size: 25px;
 }
