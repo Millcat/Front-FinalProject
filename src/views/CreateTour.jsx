@@ -66,7 +66,6 @@ const CreateTour = props => {
   // }
 
 
-
   return (
     <div
       className="container-form"
@@ -76,17 +75,18 @@ const CreateTour = props => {
       <h1>Create your experience</h1>
       <Form className="form">
         <Form.Group controlId="exampleForm.ControlInput1">
-          <Form.Label>Name *</Form.Label>
+          <Form.Label>Name: *</Form.Label>
           <Form.Control
             onChange={handleChange}
             type="text"
             value={formTour.name}
-            placeholder="John Doe"
+            placeholder="Learn to cook delicious Macarons"
             name="name"
+            max-length="36"
           />
         </Form.Group>
         <Form.Group controlId="exampleForm.ControlFile1">
-          <Form.Label>Tour Picture</Form.Label>
+          <Form.Label>Tour Picture:</Form.Label>
           <Form.Control
             onChange={handleChange}
             type="file"
@@ -94,7 +94,7 @@ const CreateTour = props => {
           />
         </Form.Group>
         <Form.Group controlId="exampleForm.ControlInput2">
-          <Form.Label>Max number of people</Form.Label>
+          <Form.Label>Max number of people:</Form.Label>
           <Form.Control
             onChange={handleChange}
             type="number"
@@ -108,39 +108,47 @@ const CreateTour = props => {
             onChange={handleChange}
             type="date"
             name="date"
-            placeholder="6"
           />
           {/* <CalendarForm name="dates" handleDatesChange={handleDatesChange} /> */}
           {/* <Form.Control onChange={handleChange} type="date" name="dates" /> */}
         </Form.Group>
         <Form.Group controlId="exampleForm.ControlInput3">
-          <Form.Label>Price/person</Form.Label>
+          <Form.Label>Price/person:</Form.Label>
           <Form.Control
             onChange={handleChange}
             type="number"
             name="price"
             placeholder="20"
-          />
+          /><span>€</span>
         </Form.Group>
         <Form.Group controlId="exampleForm.ControlInput3">
-          <Form.Label>Duration</Form.Label>
+          <Form.Label>Duration:</Form.Label>
           <Form.Control
             onChange={handleChange}
-            type="number"
+            type="time"
             name="duration"
             placeholder="2"
-          />
+          /><span>hours</span>
         </Form.Group>
         <Autocomplete onChange={addressAutocomplete} />
+        <Form.Group controlId="exampleForm.ControlInput3">
+          <Form.Label>Time of meeting:</Form.Label>
+          <Form.Control
+            onChange={handleChange}
+            type="time"
+            name="time"
+            placeholder="Experience starts at..."
+          />
+        </Form.Group>
         <Form.Group controlId="exampleForm.ControlSelect1">
-          <Form.Label>Thematic *</Form.Label>
+          <Form.Label>Thematic: *</Form.Label>
           <Form.Control
             onChange={handleChange}
             value={formTour.thematics}
             as="select"
             name="thematics"
           >
-            <option value="">Choose a thematic</option>
+            <option value="">Choose a thematic:</option>
             <option>Food</option>
             <option>Street Art</option>
             <option>Fashion</option>
@@ -152,7 +160,7 @@ const CreateTour = props => {
           </Form.Control>
           <div className="form-group">
             <label htmlFor="exampleFormControlSelect2">
-              Choose language(s)
+              Choose language(s):
             </label>
             <select
               multiple
@@ -171,7 +179,7 @@ const CreateTour = props => {
           </div>
         </Form.Group>
         <Form.Group controlId="exampleForm.ControlTextarea1">
-          <Form.Label>Description *</Form.Label>
+          <Form.Label>Description: *</Form.Label>
           <Form.Control
             onChange={handleChange}
             as="textarea"

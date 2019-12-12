@@ -16,6 +16,11 @@
   font-size: 14px;
 }
 
+
+::placeholder {
+  color:  rgb(184, 178, 178) !important;
+}
+
 .container-btn-links {
   display: flex;
   justify-content: center;
