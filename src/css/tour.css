@@ -41,6 +41,7 @@ header {
 
 .fa-users {
     padding: 0 !important;
+    margin-left: 0 !important;
 }
 
 aside {
@@ -56,6 +57,7 @@ aside {
 
 .fa-user {
   font-size: 18px;
+  margin-left: 0 !important;
 }
 
 .main-aside {
@@ -97,6 +99,10 @@ select {
     text-align-last:center;
 }
 
+.container-overview > i {
+    margin-left: 10px;
+}
+
 #spots-left {
     color: red;
 }
@@ -106,9 +112,11 @@ select {
     color:#fe4e6e
 }
 
-i {
-    padding-right: 10px;
+.fas, .far {
+    margin-right: 10px !important;
+    margin-left: 0px !important;
 }
+
 
 .date {
     display: flex;
@@ -144,7 +152,7 @@ i {
 
 /* MAIN CONTENT*/
 
-.fa-map-marker-alt, .fa-binoculars, .check, .fa-check, .fa-users, .fa-euro-sign, .fa-clock, .fa-globe-asia, .fa-user {
+.fa-map-marker-alt, .fa-binoculars, .check, .fa-check, .fa-users, .fa-euro-sign, .fa-clock, .fa-globe-asia, .fa-user, .fa-clipboard-list {
     color: #3f7ac0;
 }
 
@@ -203,6 +211,10 @@ h5 {
     background: #F7F7F7;
     display: flex;
     flex-direction: column;
+}
+
+.fa-check {
+    margin-left: 0 !important;
 }
 
 h2 {

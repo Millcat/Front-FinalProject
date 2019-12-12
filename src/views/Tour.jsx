@@ -124,7 +124,7 @@ function Tour(props) {
       <div className="main">
         <div className="all-sections">
           <section id="main-infos">
-            <h5>TOUR OVERVIEW</h5>
+            <h5>TOUR OVERVIEW <i className="fas fa-binoculars"></i></h5>
             <div className="containers-overview">
               <div className="container-overview">
                 <div>
@@ -160,21 +160,24 @@ function Tour(props) {
             <h5>
               YOUR GUIDE <i class="fas fa-user"></i>
             </h5>
-            {console.log("guide", tour.guide)}
-            <p>{tour.guide.username}</p>
-            <p>{tour.guide.age}</p>
-            <p>{tour.guide.description}</p>
+            <div style={{ backgroundImage: `url(${tour.guide.userPicure})}` }}>
+              <img src={tour.guide.userPicture}></img>
+            </div>
+            <div>
+              <p>{tour.guide.username}</p>
+              <p>{tour.guide.age}</p>
+              <p>{tour.guide.description}</p>
+            </div>
           </section>
           <section id="meeting-location">
             <h5>
-              MEETING LOCATION <i class="fas fa-map-marker-alt"></i>
+              MEETING LOCATION & TIME<i class="fas fa-map-marker-alt"></i>
             </h5>
             <p>{tour.meetingLocation}</p>
+            <p>let's meet at{tour.time}</p>
           </section>
           <section id="description">
-            <h5>
-              YOUR PROGRAM <i class="fas fa-binoculars"></i>
-            </h5>
+            <h5>YOUR PROGRAM <i class="fas fa-clipboard-list"></i></h5>
             <p>{tour.description}</p>
           </section>
         </div>
@@ -213,8 +216,8 @@ function Tour(props) {
                 >
                   {remainingSpots.length
                     ? remainingSpots.map((spot, i) => (
-                        <option key={i}>{spot}</option>
-                      ))
+                      <option key={i}>{spot}</option>
+                    ))
                     : ""}
                 </select>
               </div>
@@ -225,8 +228,8 @@ function Tour(props) {
                   Only {remainingSpots[remainingSpots.length - 1]} spots left!
                 </span>
               ) : (
-                <span></span>
-              )}
+                  <span></span>
+                )}
               <Button className="btn-cart" onClick={addToCart}>
                 Add to cart
               </Button>
