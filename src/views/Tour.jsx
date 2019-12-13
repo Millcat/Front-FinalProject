@@ -145,7 +145,7 @@ function Tour(props) {
                   <p>
                     <i class="fas fa-globe-asia"></i>Language(s):
                   </p>
-                  <p>{tour.languages}</p>
+                  <p>{tour.languages.map((language) => language + " ")}</p>
                 </div>
                 <div>
                   <p>
