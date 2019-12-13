@@ -15,6 +15,16 @@ body {
     margin-right: 6vw;
 }
 
+figcaption > span {
+    display: inline-block;
+    padding: 5px 20px;
+    font-size: 18px;
+    font-weight: 500;
+    color: #fff;
+    background: #3f7ac0;
+}
+
+
 
 .tour-card figure  {
     position: relative;
@@ -71,7 +81,7 @@ a:active, a:hover {
     left: 0;
     bottom: 0;
     text-align: center;
-    background: #3f7ac0;
+    background: rgb(221, 75, 99) !important;
     height: 40px;
     display: flex;
     justify-content: center;
@@ -140,7 +150,7 @@ h3 > a:hover {
 }
 
 .fa-star .active {
- background: yellow;
+ color: yellow;
 }
 
 .container-img > div > img {
