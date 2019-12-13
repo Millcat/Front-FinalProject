@@ -41,15 +41,19 @@ function AllTours(props) {
 
   return (
     <div className="all-tours">
-      <h1>Find your experience...</h1>
-      <Filters
-        onChange={(thematics, languages) =>
-          getFilteredTours(thematics, languages)
-        }
-      />
-      {/* <Filters onChange={getFilteredTours} /> same syntax*/}
-      {/* 2) get the array of filters from child Filters and send it as parameter in the getFilteredTours function */}
-      <TourCardPlus tours={tours} />
+      <div className="parallax">
+        <h1 className="title-all-tours">Find your experience...</h1>
+        <Filters
+          onChange={(thematics, languages) =>
+            getFilteredTours(thematics, languages)
+          }
+        />
+      </div>
+      <div className="allTours-content">
+        {/* <Filters onChange={getFilteredTours} /> same syntax*/}
+        {/* 2) get the array of filters from child Filters and send it as parameter in the getFilteredTours function */}
+        <TourCardPlus tours={tours} />
+      </div>
     </div>
   );
 }

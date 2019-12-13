@@ -1,15 +1,28 @@
-/* quelle police utiliser ? see avec helene */
-.all-tours h1 {
-  text-align: center;
+.parallax {
+  background-image: url("../../src/styles/monument.jpg");
+  /* Set a specific height to see the background image*/
+  min-height: 500px;
+
+  /* Create the parallax scrolling effect */
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .filters {
   text-align: center;
+  color: white;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
 }
 
 .filters-list {
   display: flex;
   justify-content: center;
+  background: rgba(63, 122, 192, 0.29);
+  position: relative;
+  top: 200px;
+  margin-top: 5px;
 }
 
 .filter {
@@ -23,5 +36,34 @@
 }
 
 .filter.isSelected {
-  background: rgb(103, 115, 138);
+  background: black;
+}
+
+.title-all-tours {
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+  text-align: center;
+  color: white;
+  margin: 0;
+  top: 150px;
+  position: relative;
+}
+
+.language-icon,
+.thematic-icon {
+  display: block;
+  margin: auto;
+  width: 25px;
+}
+
+.thematic-icon {
+  color: white;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+.invert {
+  -webkit-filter: invert(100%);
+}
+
+.allTours-content {
+  /* background: rgba(229, 231, 235, 0.39); */
 }
