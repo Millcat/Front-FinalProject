@@ -53,7 +53,7 @@ export default function TourCardLastChance() {
           else return -1
         }).map((tour, i) => (
 
-          placesLeft(tour) === 0 ? "" : <div className="tour-card" key={i}>
+          ((placesLeft(tour) === 0) || (placesLeft(tour) > 5)) ? "" : (<div className="tour-card" key={i}>
             <figure className="container-img">
               <div>
                 <img src={tour.tourPicture} alt="card-plus" />
@@ -78,15 +78,16 @@ export default function TourCardLastChance() {
                 <h3>{tour.name}</h3>
                 <p className="tour-duration"><span className="fa fa-clock-o"></span><i class="far fa-clock"></i>{tour.duration} hours</p>
                 <p className="tour-date"><span><i class="fas fa-calendar-day"></i>{moment(tour.date).format("[The] Do [of] MMMM")}</span></p>
-                {placesLeft(tour) < 5 ? <p className="spots-left">Only {placesLeft(tour)} spots left!</p> : ""}
+                <p className="spots-left">Only {placesLeft(tour)} places left!</p>
+              </div>
+              <div className="tour-booking slide-fwd-center">
+                <Link className="link-experience" to={"/tours/" + tour._id}>See experience</Link>
               </div>
             </div>
-            <div className="tour-booking slide-fwd-center">
-              <Link className="link-experience" to={"/tours/" + tour._id}>See experience</Link>
-            </div>
+
           </div>
-        ))}
+          )))}
       </div>
-    </div>
-  )
+
+    </div>)
 }
