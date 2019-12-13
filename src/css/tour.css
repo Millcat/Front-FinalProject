@@ -169,7 +169,7 @@ aside {
     flex-direction: column;
 }
 
-.gmap-canvas {
+.infos-location-time  .gmap-canvas {
   position: relative;
   bottom: 50px; 
 }
@@ -187,8 +187,6 @@ aside {
     position: relative;
     top: 50px;
   }
-
-
 
 /* MAIN CONTENT*/
 
