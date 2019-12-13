@@ -45,6 +45,7 @@ function TourCardPlus(props) {
                   width="300"
                   height="200"
                   id="gmap_canvas"
+                  title="map"
                   src={
                     "https://maps.google.com/maps?q=" +
                     encodeURI(tour.meetingLocation) +
@@ -55,7 +56,7 @@ function TourCardPlus(props) {
                   marginheight="0"
                   marginwidth="0"
                 ></iframe>
-                <a href="https://www.crocothemes.net"></a>
+                {/* <a href="https://www.crocothemes.net"></a> */}
               </div>
             </div>
           </div>

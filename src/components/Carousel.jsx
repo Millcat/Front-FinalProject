@@ -25,7 +25,7 @@ const Carou = () => {
         />
         <Carousel.Caption className="baseline">
           <h3 className="title">Experience Paris</h3>
-          <p className="description">Enjoy street art</p>
+          <p className="description">The best Art Experience</p>
         </Carousel.Caption>
       </Carousel.Item>
 

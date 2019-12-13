@@ -7,7 +7,6 @@ import { Link } from "react-router-dom";
 
 export default function TourCardLastChance() {
   const [tours, setTours] = useState([]);
-  const [lastChance, setLastChance] = useState([])
   const [bookings, setBookings] = useState([])
 
   useEffect(() => {

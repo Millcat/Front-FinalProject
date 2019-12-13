@@ -5,7 +5,6 @@ import "../css/tour.css";
 import moment from "moment";
 import Button from "react-bootstrap/Button";
 import UserContext from "./../auth/UserContext";
-import SignIn from "./SignIn";
 
 function Tour(props) {
   const [tour, setTour] = useState({});
@@ -15,7 +14,7 @@ function Tour(props) {
   const [cart, setCart] = useState(localStorageCart);
   const [remainingSpots, setRemainingSpots] = useState([]);
   const userContext = useContext(UserContext);
-  const { setCurrentUser, currentUser } = userContext;
+  const { currentUser } = userContext;
 
   useEffect(() => {
     const tourId = props.match.params.id;
@@ -162,7 +161,7 @@ function Tour(props) {
             </h5>
             <div className="guide-card">
               <div className="img-guide">
-                <img src={tour.guide.userPicture} />
+                <img src={tour.guide.userPicture} alt="guide" />
               </div>
               <div className="guide-details">
                 <h4>{tour.guide.username}</h4>
@@ -207,34 +206,33 @@ function Tour(props) {
               <i class="fas fa-calendar-day"></i>
               <p>{newDate}</p>
             </div>
-            {console.log("remainingspot", remainingSpots),
-              remainingSpots.length ?
-                (
-                  <React.Fragment>
-                    <form className="form-participants">
-                      <div className="container-participants">
-                        <i class="fas fa-user"></i>
-                        <label>Select participants: </label>
-                        <select
-                          placeholder="select"
-                          name="participants"
-                          onChange={handleChange}
-                        >
-                          {remainingSpots.length
-                            ? remainingSpots.map((spot, i) => (
-                              <option key={i}>{spot}</option>
-                            ))
-                            : ""}
-                        </select>
-                      </div>
-                    </form>
-                    <div className="container-btn">
-                      {remainingSpots[0] < 5 ? (
-                        <span id="spots-left">Only {remainingSpots[remainingSpots.length - 1]} spots left!</span>) : (<span></span>)}
-                      <Button className="btn-cart" onClick={addToCart}>Add to cart</Button>
+            {remainingSpots.length ?
+              (
+                <React.Fragment>
+                  <form className="form-participants">
+                    <div className="container-participants">
+                      <i class="fas fa-user"></i>
+                      <label>Select participants: </label>
+                      <select
+                        placeholder="select"
+                        name="participants"
+                        onChange={handleChange}
+                      >
+                        {remainingSpots.length
+                          ? remainingSpots.map((spot, i) => (
+                            <option key={i}>{spot}</option>
+                          ))
+                          : ""}
+                      </select>
                     </div>
-                  </React.Fragment>
-                ) : (<span>There are no places left</span>)}
+                  </form>
+                  <div className="container-btn">
+                    {remainingSpots[0] < 5 ? (
+                      <span id="spots-left">Only {remainingSpots[remainingSpots.length - 1]} spots left!</span>) : (<span></span>)}
+                    <Button className="btn-cart" onClick={addToCart}>Add to cart</Button>
+                  </div>
+                </React.Fragment>
+              ) : (<span>There are no places left</span>)}
           </div>
         </aside>
       </div>

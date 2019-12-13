@@ -11,7 +11,7 @@ import UserContext from "../auth/UserContext";
 const NavMain = withRouter(props => {
   const userContext = useContext(UserContext);
   const { setCurrentUser, currentUser } = userContext;
-  const { isLoading, isLoggedIn } = useAuth();
+  const { isLoading } = useAuth();
 
   const handleSignout = () =>
     handler.post("/logout").finally(() => {
@@ -61,10 +61,10 @@ const NavMain = withRouter(props => {
               </NavLink>
             </React.Fragment>
           ) : (
-            <NavLink to="#" onClick={handleSignout} className="nav-link">
-              Log Out
+              <NavLink to="#" onClick={handleSignout} className="nav-link">
+                Log Out
             </NavLink>
-          )}
+            )}
           <NavLink to="/shopcart" className="nav-link">
             <i className="fas fa-shopping-cart"></i>
             {}

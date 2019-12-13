@@ -4,7 +4,7 @@ export default function Footer() {
   return (
     <footer class="footer">
       <div>
-        <img src="../paris-logo-bleu.png" className="paris-logo-bleu" />
+        <img src="../paris-logo-bleu.png" className="paris-logo-bleu" alt="paris-logo" />
       </div>
       <div class="social-icons">
         <i class="fab fa-facebook-square"></i>
