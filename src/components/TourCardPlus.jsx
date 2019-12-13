@@ -12,35 +12,39 @@ function TourCardPlus(props) {
           <div className="tour-card-plus" key={i}>
             <h3 className="tour-card-plus-title">{tour.name}</h3>
             <div className="tour-card-plus-WO-title">
-              <img src={tour.tourPicture} alt="card-plus" />
-
-              <div className="infos-tour">
-                {/* <div className="infos"> */}
-                <p className="thematics">{tour.thematics}</p>
-
-                <div className="info-icons">
-                  <p>
-                    <i className="fas fa-users"></i>
-                    <span>{tour.maxPeople}</span> people
-                  </p>
-                  <p>
-                    <i className="fas fa-comments"></i>
-                    {tour.languages.map((language, i) => (
-                      <span key={i}>{language} </span>
-                    ))}
-                  </p>
-                  <p>
-                    <i className="fas fa-coins"></i>
-                    <span> {tour.price}</span> €
-                  </p>
-                  {/* </div> */}
+              <div className="group-info-img">
+                <div className="img-container-card-plus">
+                  <img src={tour.tourPicture} alt="card-plus" />
                 </div>
-                <Link to={"/tours/" + tour._id}>
-                  <button className="btn">See tour</button>
-                </Link>
+
+                <div className="infos-tour">
+                  {/* <div className="infos"> */}
+                  <p className="thematics">{tour.thematics}</p>
+
+                  <div className="info-icons">
+                    <p>
+                      <i className="fas fa-users"></i>
+                      <span>{tour.maxPeople}</span> people
+                    </p>
+                    <p>
+                      <i className="fas fa-comments"></i>
+                      {tour.languages.map((language, i) => (
+                        <span key={i}>{language} </span>
+                      ))}
+                    </p>
+                    <p>
+                      <i className="fas fa-coins"></i>
+                      <span> {tour.price}</span> €
+                    </p>
+                    {/* </div> */}
+                  </div>
+                  <Link to={"/tours/" + tour._id}>
+                    <button className="btn">See tour</button>
+                  </Link>
+                </div>
               </div>
               <div key={i} class="mapouter"></div>
-              <div class="gmap_canvas">
+              <div class="gmap-canvas">
                 <iframe
                   width="300"
                   height="200"
