@@ -207,39 +207,38 @@ function Tour(props) {
               <i class="fas fa-calendar-day"></i>
               <p>{newDate}</p>
             </div>
-            <form className="form-participants">
-              <div className="container-participants">
-                <i class="fas fa-user"></i>
-                <label>Select participants: </label>
-                <select
-                  placeholder="select"
-                  name="participants"
-                  onChange={handleChange}
-                >
-                  {remainingSpots.length
-                    ? remainingSpots.map((spot, i) => (
-                      <option key={i}>{spot}</option>
-                    ))
-                    : ""}
-                </select>
-              </div>
-            </form>
-            <div className="container-btn">
-              {remainingSpots.length < 10 ? (
-                <span id="spots-left">
-                  Only {remainingSpots[remainingSpots.length - 1]} spots left!
-                </span>
-              ) : (
-                  <span></span>
-                )}
-              <Button className="btn-cart" onClick={addToCart}>
-                Add to cart
-              </Button>
-            </div>
+            {console.log("remainingspot", remainingSpots),
+              remainingSpots.length ?
+                (
+                  <React.Fragment>
+                    <form className="form-participants">
+                      <div className="container-participants">
+                        <i class="fas fa-user"></i>
+                        <label>Select participants: </label>
+                        <select
+                          placeholder="select"
+                          name="participants"
+                          onChange={handleChange}
+                        >
+                          {remainingSpots.length
+                            ? remainingSpots.map((spot, i) => (
+                              <option key={i}>{spot}</option>
+                            ))
+                            : ""}
+                        </select>
+                      </div>
+                    </form>
+                    <div className="container-btn">
+                      {remainingSpots[0] < 5 ? (
+                        <span id="spots-left">Only {remainingSpots[remainingSpots.length - 1]} spots left!</span>) : (<span></span>)}
+                      <Button className="btn-cart" onClick={addToCart}>Add to cart</Button>
+                    </div>
+                  </React.Fragment>
+                ) : (<span>There are no places left</span>)}
           </div>
         </aside>
       </div>
-    </div >
+    </div>
   );
 }
 

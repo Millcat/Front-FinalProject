@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 export default function TourCardLastChance() {
   const [tours, setTours] = useState([]);
   const [lastChance, setLastChance] = useState([])
+  const [bookings, setBookings] = useState([])
 
   useEffect(() => {
     axios
@@ -22,10 +23,23 @@ export default function TourCardLastChance() {
       });
   }, []);
 
+  useEffect(() => {
+    axios
+      .get(process.env.REACT_APP_BACKEND_URL + "/booking") // remplacer ensuite par "url" car définit dans le handler
+      .then(res => {
+        console.log(res)
+        setBookings(res.data);
+
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }, []);
+
   function placesLeft(tour) {
     let maxPeople = tour.maxPeople;
-    let bookings = tour.bookings
-    let sum = bookings.reduce((sum, b) => {
+    let bookingsList = bookings.filter(b => b.tour === tour._id)
+    let sum = bookingsList.reduce((sum, b) => {
       return sum += b.participants
     }, 0)
     return maxPeople - sum
@@ -41,7 +55,8 @@ export default function TourCardLastChance() {
           if (t1.date > t2.date) return 1;
           else return -1
         }).map((tour, i) => (
-          <div className="tour-card" key={i}>
+
+          placesLeft(tour) === 0 ? "" : <div className="tour-card" key={i}>
             <figure className="container-img">
               <img width="500" height="254" src={tour.tourPicture} alt="card-plus" />
               <figcaption>
