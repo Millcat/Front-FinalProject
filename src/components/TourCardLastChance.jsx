@@ -46,7 +46,7 @@ export default function TourCardLastChance() {
   if (!tours.length) return null
   return (
     <div className="container-tour-cards">
-      <h2>Last Chance Tours !</h2>
+      <h2>Last Chance Experiences!</h2>
       <div className="row">
         {tours.sort((t1, t2) => {
           if (t1.date > t2.date) return 1;

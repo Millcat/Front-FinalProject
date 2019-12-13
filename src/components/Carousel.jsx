@@ -8,6 +8,17 @@ const Carou = () => {
       <Carousel.Item>
         <img
           className="d-block w-100"
+          src="/french-2.jpg"
+          alt="First slide"
+        />
+        <Carousel.Caption className="baseline">
+          <h3 className="title">Experience Paris with a local</h3>
+          <p className="description">The best way to learn about French Culture !</p>
+        </Carousel.Caption>
+      </Carousel.Item>
+      <Carousel.Item>
+        <img
+          className="d-block w-100"
           src="/monument.jpg"
           alt="First slide"
         />
