@@ -8,7 +8,7 @@
 
 .tour-card-plus img {
   display: block;
-  width: 200px;
+  height: 200px;
 }
 
 .tour-card-plus-title {
@@ -16,17 +16,24 @@
   text-align: center;
   background: #3f7ac0;
   padding: 10px;
+  margin-bottom: 0px !important;
 }
 
 .tour-card-plus-WO-title {
   display: flex;
   justify-content: space-between;
-  margin-top: 10px;
   padding: 10px;
 }
 
 .infos-tour {
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  margin-left: 20px;
+}
+
+.group-info-img {
+  display: flex;
+  flex-direction: row;
 }
 
 .infos-tour .btn {
@@ -34,6 +41,7 @@
   border-radius: 10px;
   position: relative;
   margin-top: 10px;
+  background: rgb(221, 75, 99) !important;
 }
 
 .infos-tour p {
@@ -45,9 +53,13 @@
   padding: 0px;
 }
 
+.fa-coins,
+.fa-comments {
+  color: #3f7ac0;
+}
+
 .thematics {
-  display: inline-block;
-  margin-left: 10px;
+  display: inline-block !important;
   font-size: 18px;
   padding-bottom: 3px;
   border-bottom: solid #3f7ac0;
@@ -55,4 +67,12 @@
 
 .info-icons {
   margin-top: 10px;
+}
+
+.gmap-canvas {
+}
+
+.img-container-card-plus {
+  width: 300px;
+  overflow: hidden;
 }
