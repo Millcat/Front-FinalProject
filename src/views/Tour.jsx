@@ -178,7 +178,7 @@ function Tour(props) {
             <div className="infos-location-time">
               <div>
                 <p>{tour.meetingLocation}</p>
-                <p>Let's meet at{tour.time}</p>
+                <p>Let's meet at {tour.time}</p>
               </div>
               <div className="gmap-canvas">
                 <iframe
@@ -250,7 +250,7 @@ function Tour(props) {
                     </div>
                   </form>
                   <div className="container-btn">
-                    {remainingSpots[0] < 5 ? (
+                    {remainingSpots.length < 5 ? (
                       <span id="spots-left">Only {remainingSpots[remainingSpots.length - 1]} spots left!</span>) : (<span></span>)}
                     <Button className="btn-cart" onClick={addToCart}>Add to cart</Button>
                   </div>

@@ -100,6 +100,16 @@ const EditTour = props => {
               name="duration"
             />
           </Form.Group>
+          <Form.Group controlId="exampleForm.ControlInput3">
+            <Form.Label>Time of meeting:</Form.Label>
+            <Form.Control
+              onChange={handleChange}
+              type="time"
+              name="time"
+              onChange={handleChange}
+              value={selectedTour.time}
+            />
+          </Form.Group>
           <Form.Group controlId="exampleForm.ControlInput4">
             <Form.Label>Meeting point</Form.Label>
             <Form.Control
