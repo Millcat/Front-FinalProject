@@ -63,3 +63,7 @@
 .invert {
   -webkit-filter: invert(100%);
 }
+
+.allTours-content {
+  /* background: rgba(229, 231, 235, 0.39); */
+}
