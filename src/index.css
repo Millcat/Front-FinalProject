@@ -162,6 +162,10 @@
   padding-right: 30px;
 }
 
+.social-icons > .fab {
+  padding-right: 10px;
+}
+
 #nbOfToursInCart:not(:empty) {
   background-color: #3f7ac0;
   color: white;

@@ -6,6 +6,7 @@ import moment from "moment";
 import Button from "react-bootstrap/Button";
 import UserContext from "./../auth/UserContext";
 
+
 function Tour(props) {
   const [tour, setTour] = useState({});
   const [bookings, setBookings] = useState([]);
@@ -174,8 +175,30 @@ function Tour(props) {
             <h5>
               MEETING LOCATION & TIME <i class="fas fa-map-marker-alt"></i>
             </h5>
-            <p>{tour.meetingLocation}</p>
-            <p>let's meet at{tour.time}</p>
+            <div className="infos-location-time">
+              <div>
+                <p>{tour.meetingLocation}</p>
+                <p>Let's meet at{tour.time}</p>
+              </div>
+              <div className="gmap-canvas">
+                <iframe
+                  width="300"
+                  height="200"
+                  id="gmap_canvas"
+                  title="map"
+                  src={
+                    "https://maps.google.com/maps?q=" +
+                    encodeURI(tour.meetingLocation) +
+                    "&t=&z=13&ie=UTF8&iwloc=&output=embed"
+                  }
+                  frameborder="0"
+                  scrolling="no"
+                  marginheight="0"
+                  marginwidth="0"
+                ></iframe>
+                {/* <a href="https://www.crocothemes.net"></a> */}
+              </div>
+            </div>
           </section>
           <section id="description">
             <h5>YOUR PROGRAM <i class="fas fa-clipboard-list"></i></h5>

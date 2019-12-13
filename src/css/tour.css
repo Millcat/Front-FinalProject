@@ -158,6 +158,22 @@ aside {
  width: 120px;
 }
 
+.infos-location-time {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.infos-location-time > div {
+    display: flex;
+    flex-direction: column;
+}
+
+.gmap-canvas {
+  position: relative;
+  bottom: 50px; 
+}
+
 #tour-name {
    padding: 20px;
    color: white;
@@ -165,17 +181,23 @@ aside {
    display: flex !important;
    justify-content: flex-start !important;
     text-shadow: 0px 2px 2px rgba(5, 5, 5, 0.8); 
-    width: 60%;
+    width: 70%;
     text-align: left !important;
     margin-left: 50px;
+    position: relative;
+    top: 50px;
   }
 
 
 
 /* MAIN CONTENT*/
 
-.meeting-location-time > p {
+#meeting-location-time > p {
     margin-bottom: 0 !important;
+}
+
+#meeting-location-time {
+    height: 235px;
 }
 
 .fa-map-marker-alt, .fa-binoculars, .check, .fa-check, .fa-users, .fa-euro-sign, .fa-clock, .fa-globe-asia, .fa-user, .fa-clipboard-list {
@@ -253,7 +275,6 @@ h2 {
 .h2-title {
    background: linear-gradient(to top, #f1f1f1 0%, #ffffff);
    width: 100%;
-  
    display: flex;
    justify-content: center;
    align-items: center;

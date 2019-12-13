@@ -137,8 +137,17 @@ h3 > a:hover {
     bottom: 0;
 }
 
-.container-img > img {
-    max-width: 100%;
+.fa-star .active {
+ background: yellow;
+}
+
+.container-img > div > img {
+ overflow: hidden;
+ height: 185px;
+}
+
+.container-img > div {
+    width: 262px;
     height: 185px;
 }
 

@@ -13,7 +13,6 @@ export default function TourCardLastChance() {
     axios
       .get(process.env.REACT_APP_BACKEND_URL + "/tours") // remplacer ensuite par "url" car définit dans le handler
       .then(res => {
-        console.log(res)
         setTours(res.data);
 
       })
@@ -26,7 +25,6 @@ export default function TourCardLastChance() {
     axios
       .get(process.env.REACT_APP_BACKEND_URL + "/booking") // remplacer ensuite par "url" car définit dans le handler
       .then(res => {
-        console.log(res)
         setBookings(res.data);
 
       })
@@ -57,7 +55,9 @@ export default function TourCardLastChance() {
 
           placesLeft(tour) === 0 ? "" : <div className="tour-card" key={i}>
             <figure className="container-img">
-              <img width="500" height="254" src={tour.tourPicture} alt="card-plus" />
+              <div>
+                <img src={tour.tourPicture} alt="card-plus" />
+              </div>
               <figcaption>
                 <span>{tour.price} €</span>
               </figcaption>
