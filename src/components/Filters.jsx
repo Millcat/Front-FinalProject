@@ -67,7 +67,12 @@ const Filters = props => {
             onClick={() => handleClickThematics(filteredName.name)}
           >
             {filteredName.name}
-            <img className="thematic-icon" src={`./${filteredName.name}.png`} />
+            <img
+              className={
+                "thematic-icon " + (filteredName.isSelected ? "invert" : "")
+              }
+              src={`./${filteredName.name}.png`}
+            />
           </div>
         ))}
       </div>
