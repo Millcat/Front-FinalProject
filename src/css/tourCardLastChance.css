@@ -11,6 +11,8 @@ body {
     justify-content: center;
     margin-top: 30px;
     margin-bottom: 30px;
+    margin-left: 7vw;
+    margin-right: 6vw;
 }
 
 
@@ -144,6 +146,7 @@ h3 > a:hover {
 .container-img > div > img {
  overflow: hidden;
  height: 185px;
+ width: 100%;
 }
 
 .container-img > div {

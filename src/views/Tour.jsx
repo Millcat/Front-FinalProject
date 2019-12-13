@@ -137,7 +137,7 @@ function Tour(props) {
                   <p>
                     <i class="fas fa-users"></i> Maximum Number of People:{" "}
                   </p>
-                  <p>{tour.maxPeople}€</p>
+                  <p>{tour.maxPeople}</p>
                 </div>
               </div>
               <div className="container-overview">

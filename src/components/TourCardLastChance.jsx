@@ -77,8 +77,8 @@ export default function TourCardLastChance() {
               <div className="tour-details">
                 <h3>{tour.name}</h3>
                 <p className="tour-duration"><span className="fa fa-clock-o"></span><i class="far fa-clock"></i>{tour.duration} hours</p>
-                <p className="tour-date"><span><i class="fas fa-calendar-day"></i>{moment(tour.date).format("[The] Do [of] MMMM")}s</span></p>
-                <p className="spots-left">Only {placesLeft(tour)} spots left!</p>
+                <p className="tour-date"><span><i class="fas fa-calendar-day"></i>{moment(tour.date).format("[The] Do [of] MMMM")}</span></p>
+                {placesLeft(tour) < 5 ? <p className="spots-left">Only {placesLeft(tour)} spots left!</p> : ""}
               </div>
             </div>
             <div className="tour-booking slide-fwd-center">
