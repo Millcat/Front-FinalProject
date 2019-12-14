@@ -2,13 +2,15 @@ h1 {
   text-align: center;
 }
 
-.shop-form {
+.shop-form.height {
   display: flex;
   flex-direction: column;
   align-items: center;
   margin-top: 50px;
   text-align: center;
+  min-height: 60vh;
 }
+
 
 .shopcart {
   border: 1px solid;

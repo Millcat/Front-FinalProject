@@ -63,20 +63,9 @@ export default function TourCardLastChance() {
               </figcaption>
             </figure>
             <div className="details">
-              <div class="tour-rating">
-                <ul class="list-unstyled clearfix">
-                  <li>
-                    <i className="fa fa-star active"></i>
-                    <i className="fa fa-star active"></i>
-                    <i className="fa fa-star active"></i>
-                    <i className="fa fa-star active"></i>
-                    <i className="fa fa-star active"></i>
-                  </li>
-                </ul>
-              </div>
               <div className="tour-details">
                 <h3>{tour.name}</h3>
-                <p className="tour-duration"><span className="fa fa-clock-o"></span><i class="far fa-clock"></i>{tour.duration} hours</p>
+                <p className="tour-duration"><span className="fa fa-clock-o"></span><i class="far fa-clock"></i>Duration: {tour.duration} hours</p>
                 <p className="tour-date"><span><i class="fas fa-calendar-day"></i>{moment(tour.date).format("[The] Do [of] MMMM")}</span></p>
                 <p className="spots-left">Only {placesLeft(tour)} places left!</p>
               </div>

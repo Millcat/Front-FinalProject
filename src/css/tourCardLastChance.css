@@ -25,13 +25,13 @@ figcaption > span {
 }
 
 
-
 .tour-card figure  {
     position: relative;
 }
 
 .tour-duration {
   margin-top: 10px;
+  margin-bottom: 5px !important;
 }
 
 .tour-card .tour-details h3{
@@ -43,7 +43,8 @@ font-weight: 400;
 
 .tour-details h3 {
     height: 35px;
-    font-weight: 800;
+    font-weight: 600 !important;
+    margin-bottom: 0 !important;
 }
 
 
@@ -67,7 +68,7 @@ font-weight: 400;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    padding: 5px 25px;
+    padding: 5px 10px;
 }
 
 a:active, a:hover {
@@ -87,11 +88,34 @@ a:active, a:hover {
     justify-content: center;
     align-items: center;
     margin-top: 30px;
+    transition: all 0.5s;
 }
 
-.tour-booking:hover {
-    background: #5c8ac2;
+.tour-booking .link-experience { 
+        cursor: pointer;
+        display: inline-block;
+        position: relative;
+        transition: 0.5s;
 }
+
+.tour-booking .link-experience:after {
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+  }
+
+  .tour-booking:hover .link-experience{
+    padding-right: 25px;
+  }
+  
+  .tour-booking:hover .link-experience:after {
+    opacity: 1;
+    right: 0;
+  }
+
 
 p {
     font-size: 15px;
@@ -138,7 +162,7 @@ h3 > a:hover {
     overflow: hidden;
     background-color: #fff;
     width: 262px;
-    height: 440px;
+    height: 410px;
     display: flex;
     flex-direction: column;
 }

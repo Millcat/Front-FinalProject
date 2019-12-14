@@ -72,38 +72,6 @@
   align-items: center;
 }
 
-/*RATING*/
-
-/* .rating {
-  width: 226px;
-  margin: 0 auto 1em;
-  font-size: 45px;
-  overflow:hidden;
-}
-
-.rating a {
-  float:right;
-  color: #aaa;
-  text-decoration: none;
-  -webkit-transition: color .4s;
-  -moz-transition: color .4s;
-  -o-transition: color .4s;
-  transition: color .4s;
-}
-.rating a:hover,
-.rating a:hover ~ a,
-.rating a:focus,
-.rating a:focus ~ a		{
-  color: orange;
-  cursor: pointer;
-}
-.rating2 {
-  direction: rtl;
-}
-.rating2 a {
-  float:none
-} */
-
 /*Button*/
 .btn {
   background: rgb(221, 75, 99) !important;
@@ -111,7 +79,14 @@
   border: none !important;
   padding: 5px 10px;
   margin-bottom: 10px;
+  border-radius: 5px !important;
 }
+
+.btn:hover {
+  background: rgb(139, 47, 63) !important;
+
+}
+
 
 .btn-create {
   width: 130px;
@@ -169,8 +144,13 @@
 #nbOfToursInCart:not(:empty) {
   background-color: #3f7ac0;
   color: white;
-  border-radius: 50px;
+  border-radius: 50%;
   padding: 0px 5px;
+  position: absolute;
+  right: 15px;
+  bottom: 15px;
+  font-size: 0.8rem;
+  opacity: 0.9;
 }
 
 .fa-shopping-cart {

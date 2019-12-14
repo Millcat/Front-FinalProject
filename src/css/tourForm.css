@@ -1,7 +1,11 @@
-.form {
+.form, .form-edit {
   width: 40%;
 }
 /* above : deleted by helene. To fix. */
+
+.form-edit {
+  margin-top: 50px;
+}
 
 .container-form {
   display: flex;

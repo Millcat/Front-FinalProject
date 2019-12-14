@@ -43,9 +43,9 @@ const EditTour = props => {
   return (
     selectedTour !== null && (
       <div className="container-form">
-        <Form className="form" onSubmit={handleSubmit}>
+        <Form className="form-edit" onSubmit={handleSubmit}>
           <Form.Group controlId="exampleForm.ControlInput1">
-            <Form.Label>Name</Form.Label>
+            <Form.Label>Name:</Form.Label>
             <Form.Control
               onChange={handleChange}
               value={selectedTour.name}
@@ -55,7 +55,7 @@ const EditTour = props => {
             />
           </Form.Group>
           <Form.Group controlId="exampleForm.ControlFile1">
-            <Form.Label>Tour Picture</Form.Label>
+            <Form.Label>Tour Picture:</Form.Label>
             <Form.Control
               onChange={handleChange}
               // value={selectedTour.tourPicture}
@@ -64,7 +64,7 @@ const EditTour = props => {
             />
           </Form.Group>
           <Form.Group controlId="exampleForm.ControlInput2">
-            <Form.Label>Max number of people</Form.Label>
+            <Form.Label>Max number of people:</Form.Label>
             <Form.Control
               onChange={handleChange}
               value={selectedTour.maxPeople}
@@ -73,7 +73,7 @@ const EditTour = props => {
             />
           </Form.Group>
           <Form.Group controlId="exampleForm.ControlInput3">
-            <Form.Label>Dates</Form.Label>
+            <Form.Label>Date:</Form.Label>
             <Form.Control
               onChange={handleChange}
               value={moment(selectedTour.date).format('YYYY-MM-DD')}
@@ -83,7 +83,7 @@ const EditTour = props => {
             {console.log(moment(selectedTour.date).format('L'))}
           </Form.Group>
           <Form.Group controlId="exampleForm.ControlInput3">
-            <Form.Label>Price/person</Form.Label>
+            <Form.Label>Price/person:</Form.Label>
             <Form.Control
               onChange={handleChange}
               value={selectedTour.duration}
@@ -92,7 +92,7 @@ const EditTour = props => {
             />
           </Form.Group>
           <Form.Group controlId="exampleForm.ControlInput3">
-            <Form.Label>Duration</Form.Label>
+            <Form.Label>Duration:</Form.Label>
             <Form.Control
               onChange={handleChange}
               value={selectedTour.price}
@@ -111,7 +111,7 @@ const EditTour = props => {
             />
           </Form.Group>
           <Form.Group controlId="exampleForm.ControlInput4">
-            <Form.Label>Meeting point</Form.Label>
+            <Form.Label>Meeting point:</Form.Label>
             <Form.Control
               onChange={handleChange}
               value={selectedTour.meetingLocation}
@@ -120,7 +120,7 @@ const EditTour = props => {
             />
           </Form.Group>
           <Form.Group controlId="exampleForm.ControlSelect1">
-            <Form.Label>Thematic</Form.Label>
+            <Form.Label>Thematic:</Form.Label>
             <Form.Control
               onChange={handleChange}
               value={selectedTour.thematics}
@@ -128,7 +128,7 @@ const EditTour = props => {
               name="thematics"
               required
             >
-              <option value="">Choose a thematic</option>
+              <option value="">Choose a thematic:</option>
               <option>Food</option>
               <option>Street Art</option>
               <option>Fashion</option>
@@ -140,7 +140,7 @@ const EditTour = props => {
             </Form.Control>
             <div className="form-group">
               <label htmlFor="exampleFormControlSelect2">
-                Choose language(s)
+                Choose language(s):
               </label>
               <select
                 multiple
@@ -162,7 +162,7 @@ const EditTour = props => {
             </div>
           </Form.Group>
           <Form.Group controlId="exampleForm.ControlTextarea1">
-            <Form.Label>Description</Form.Label>
+            <Form.Label>Description:</Form.Label>
             <Form.Control
               onChange={handleChange}
               value={selectedTour.description}

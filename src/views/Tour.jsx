@@ -16,6 +16,7 @@ function Tour(props) {
   const [remainingSpots, setRemainingSpots] = useState([]);
   const userContext = useContext(UserContext);
   const { currentUser } = userContext;
+  const [message, setMessage] = useState(false);
 
   useEffect(() => {
     const tourId = props.match.params.id;
@@ -75,6 +76,7 @@ function Tour(props) {
       ];
 
       setCart(updatedCart);
+      setMessage(!message);
       localStorage.setItem("cart", JSON.stringify(updatedCart));
 
       // update the number of tours added to the shopCart
@@ -108,7 +110,6 @@ function Tour(props) {
   const imageUrl = tour.tourPicture;
   const newDate = moment(tour.date).format("[The] Do [of] MMMM, YYYY");
 
-  console.log(tour);
 
   if (Object.keys(tour).length === 0) return <div>No Spots left</div>;
   return (
@@ -253,9 +254,10 @@ function Tour(props) {
                     {remainingSpots.length < 5 ? (
                       <span id="spots-left">Only {remainingSpots[remainingSpots.length - 1]} spots left!</span>) : (<span></span>)}
                     <Button className="btn-cart" onClick={addToCart}>Add to cart</Button>
+                    {message && <span>Added to cart!</span>}
                   </div>
                 </React.Fragment>
-              ) : (<span>There are no places left</span>)}
+              ) : (<span id="addedToCart">There are no places left</span>)}
           </div>
         </aside>
       </div>
@@ -264,3 +266,4 @@ function Tour(props) {
 }
 
 export default Tour;
+

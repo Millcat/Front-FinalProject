@@ -46,7 +46,7 @@ const ShopCart = () => {
   return (
     <div>
       <h1>Shopping Cart</h1>
-      <form className="shop-form" onSubmit={handleSubmit}>
+      <form className="shop-form height" onSubmit={handleSubmit}>
         <table className="shopcart">
           <thead>
             <tr>
@@ -54,7 +54,7 @@ const ShopCart = () => {
               <th>Date</th>
               <th>Participants</th>
               <th>€ / pers</th>
-              <th>Total Price / Tour</th>
+              <th>Total Price</th>
               <th>Delete</th>
             </tr>
           </thead>
