@@ -1,11 +1,11 @@
 .parallax {
-  background-image: url("../../src/styles/paris-filters-2.jpg");
+  background-image: url("../../src/styles/paris-filters-5.jpeg");
   /* Set a specific height to see the background image*/
   min-height: 500px;
 
   /* Create the parallax scrolling effect */
   background-attachment: fixed;
-  background-position: top right;
+  background-position: top   right;
   background-repeat: no-repeat;
   background-size: 120%;
 }

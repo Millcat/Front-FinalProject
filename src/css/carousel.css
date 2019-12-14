@@ -5,8 +5,15 @@
 
 .title,
 .description {
-  text-shadow: rgb(10, 10, 9) 5px 0 50px;
   position: relative;
+  z-index: 10;
+  color: white ! important;
+}
+
+.baseline {
+  right: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
 }
 
 
