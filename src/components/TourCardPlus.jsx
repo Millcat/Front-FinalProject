@@ -64,7 +64,7 @@ function TourCardPlus(props) {
                     <div className="info-icons">
                       <p>
                         <i className="fas fa-users"></i>
-                        <span>{tour.maxPeople}</span> people
+                        <span>{placesLeft(tour)}</span> people
                     </p>
                       <p>
                         <i className="fas fa-comments"></i>
