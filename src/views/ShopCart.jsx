@@ -6,7 +6,6 @@ import "../css/shopCart.css";
 const ShopCart = () => {
   const [tours, setTours] = useState([]);
   const [message, setMessage] = useState(false); //see EditTours
-  const localStorageCart = JSON.parse(localStorage.getItem("cart")) || [];
 
   useEffect(() => {
     const dataFromLS = JSON.parse(localStorage.getItem("cart")) || [];
