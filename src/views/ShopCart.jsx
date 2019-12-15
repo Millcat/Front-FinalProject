@@ -7,7 +7,6 @@ const ShopCart = () => {
   const [tours, setTours] = useState([]);
   const [message, setMessage] = useState(false); //see EditTours
   const localStorageCart = JSON.parse(localStorage.getItem("cart")) || [];
-  const [cart, setCart] = useState(localStorageCart);
 
   useEffect(() => {
     const dataFromLS = JSON.parse(localStorage.getItem("cart")) || [];
@@ -31,19 +30,25 @@ const ShopCart = () => {
         console.log(err);
       });
 
-    // use localStorage.clear() quand on cliquera sur "Validate"
+    // use localStorage.clear() to clear all the localStorage
     localStorage.removeItem("cart");
-    // Fill out the shopcart icon
+    // Clear the shopcart icon
     document.getElementById("nbOfToursInCart").innerHTML = "";
   };
 
   const handleRemove = (e, index) => {
     e.preventDefault();
 
+    // update the list inside localStorage regarding the position(=selection)
     const updatedTours = tours.filter((tour, i) => i !== index);
     setTours(updatedTours);
     localStorage.setItem("cart", JSON.stringify(updatedTours));
-    // console.log("tour removed from you shopcart ! index: " + index);
+
+    // update the shopcart icon with the number of tours left in the shopcart
+    updatedTours.length > 0
+      ? (document.getElementById("nbOfToursInCart").innerHTML =
+          updatedTours.length)
+      : (document.getElementById("nbOfToursInCart").innerHTML = "");
   };
 
   return (
