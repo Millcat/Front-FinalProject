@@ -1,8 +1,12 @@
 .not-found {
-    text-align: center;
+  text-align: center;
 }
 
 .not-found img {
-    margin: 30px auto;
-    width: 60%;
+  margin: 30px auto;
+  width: 60%;
+}
+
+.giphy-embed {
+  margin: 30px auto;
 }
