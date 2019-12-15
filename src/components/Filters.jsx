@@ -68,10 +68,9 @@ const Filters = props => {
           >
             {filteredName.name}
             <img
-              className={
-                "thematic-icon " + (filteredName.isSelected ? "invert" : "")
-              }
-              src={`./${filteredName.name}.png`} alt="icon"
+              className={"thematic-icon invert"}
+              src={`./${filteredName.name}.png`}
+              alt="icon"
             />
           </div>
         ))}
@@ -86,7 +85,11 @@ const Filters = props => {
             onClick={() => handleClickLanguages(filteredName.name)}
           >
             {filteredName.name}
-            <img className="language-icon" src={`./${filteredName.name}.png`} alt="icon" />
+            <img
+              className="language-icon"
+              src={`./${filteredName.name}.png`}
+              alt="icon"
+            />
           </div>
         ))}
       </div>
