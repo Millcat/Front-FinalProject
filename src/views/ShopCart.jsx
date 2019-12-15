@@ -6,6 +6,8 @@ import "../css/shopCart.css";
 const ShopCart = () => {
   const [tours, setTours] = useState([]);
   const [message, setMessage] = useState(false); //see EditTours
+  const localStorageCart = JSON.parse(localStorage.getItem("cart")) || [];
+  const [cart, setCart] = useState(localStorageCart);
 
   useEffect(() => {
     const dataFromLS = JSON.parse(localStorage.getItem("cart")) || [];
@@ -31,7 +33,8 @@ const ShopCart = () => {
 
     // use localStorage.clear() quand on cliquera sur "Validate"
     localStorage.removeItem("cart");
-    // console.log("form submitted !");
+    // Fill out the shopcart icon
+    document.getElementById("nbOfToursInCart").innerHTML = "";
   };
 
   const handleRemove = (e, index) => {
