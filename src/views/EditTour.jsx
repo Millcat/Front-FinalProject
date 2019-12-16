@@ -3,7 +3,7 @@ import axios from "axios";
 import Form from "react-bootstrap/Form";
 import "../css/tourForm.css";
 import { NavLink } from "react-router-dom";
-import moment from "moment"
+import moment from "moment";
 
 const EditTour = props => {
   const [selectedTour, setSelectedTour] = useState(null); // mon state initial correspond à un formulaire déjà rempli ?
@@ -38,7 +38,6 @@ const EditTour = props => {
       .then(res => setMessage(!message))
       .catch(err => console.log(err));
   };
-
 
   return (
     selectedTour !== null && (
@@ -76,17 +75,17 @@ const EditTour = props => {
             <Form.Label>Date:</Form.Label>
             <Form.Control
               onChange={handleChange}
-              value={moment(selectedTour.date).format('YYYY-MM-DD')}
+              value={moment(selectedTour.date).format("YYYY-MM-DD")}
               type="date"
               name="date"
             />
-            {console.log(moment(selectedTour.date).format('L'))}
+            {console.log(moment(selectedTour.date).format("L"))}
           </Form.Group>
           <Form.Group controlId="exampleForm.ControlInput3">
             <Form.Label>Price/person:</Form.Label>
             <Form.Control
               onChange={handleChange}
-              value={selectedTour.duration}
+              value={selectedTour.price}
               type="number"
               name="price"
             />
@@ -95,7 +94,7 @@ const EditTour = props => {
             <Form.Label>Duration:</Form.Label>
             <Form.Control
               onChange={handleChange}
-              value={selectedTour.price}
+              value={selectedTour.duration}
               type="number"
               name="duration"
             />
@@ -132,11 +131,11 @@ const EditTour = props => {
               <option>Food</option>
               <option>Street Art</option>
               <option>Fashion</option>
-              <option>Art</option>
-              <option>Monument</option>
               <option>Cinema</option>
-              <option>Relax</option>
               <option>Insolite</option>
+              <option>Monument</option>
+              <option>Art</option>
+              <option>Sports</option>
             </Form.Control>
             <div className="form-group">
               <label htmlFor="exampleFormControlSelect2">
